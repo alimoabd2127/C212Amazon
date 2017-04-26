@@ -1,7 +1,6 @@
 package C212Amazon;
 
 import javax.swing.*;
-import ProjectSkeleton.*;
 
 import java.awt.*;
 

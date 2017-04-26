@@ -13,7 +13,7 @@ public class Buyer extends Account {
     private Market market;
 
     //Shopping cart.
-    private HashMap cart;
+    private HashMap<String, Integer> cart;
 
     //Total cost of item selected.
     private int totalCost = 0;
@@ -30,7 +30,7 @@ public class Buyer extends Account {
     //User's contact.
     private String contact;
 
-    public Buyer(String uniqueID, String username, String password, String firstName, String lastName, String phone, String email) {
+    public Buyer(int uniqueID, String username, String password, String firstName, String lastName, String phone, String email) {
 
         super(uniqueID, username, password, email);
         this.firstName = firstName;

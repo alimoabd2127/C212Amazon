@@ -12,6 +12,8 @@ import java.io.IOException;
  */
 public class BuyerFrontWindow extends FrontWindow {
 
+    private Buyer buyer;
+
     private JTextField searchBar = new JTextField(30);
     private JButton searchButton = new JButton("Search");
     private JPanel searchBarPanel = new JPanel();
@@ -27,6 +29,8 @@ public class BuyerFrontWindow extends FrontWindow {
     private JPanel southPanel = new JPanel();
 
     public BuyerFrontWindow(Buyer buyer) {
+
+        this.buyer = buyer;
 
         mainPanel.setLayout(new BorderLayout());
 
@@ -84,10 +88,20 @@ public class BuyerFrontWindow extends FrontWindow {
 
         mainPanel.add(northPanel, BorderLayout.NORTH);
 
-        String[] testArray = {"TEST1", "TEST2", "TEST3", "TEST4", "TEST5", "TEST6", "TEST7", "TEST8", "TEST9", "TEST10", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A","C", "B"};
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BorderLayout());
 
+        String[] testArray = {"TEST1", "TEST2", "TEST3", "TEST4", "TEST5", "TEST6", "TEST7", "TEST8", "TEST9", "TEST10", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A","C", "B"};
         productList = new JList<>(testArray);
-        mainPanel.add(new JScrollPane(productList), BorderLayout.CENTER);
+        productList.setFont(new Font(null, 0, 15));
+        centerPanel.add(new JScrollPane(productList), BorderLayout.CENTER);
+        centerPanel.add(new JPanel(), BorderLayout.NORTH);
+        centerPanel.add(new JPanel(), BorderLayout.SOUTH);
+
+        mainPanel.add(centerPanel, BorderLayout.CENTER);
+
+        mainPanel.add(new JPanel(), BorderLayout.WEST);
+        mainPanel.add(new JPanel(), BorderLayout.EAST);
 
         southPanel.setLayout(new GridLayout(1,6));
         southPanel.add(new JPanel());
@@ -107,7 +121,7 @@ public class BuyerFrontWindow extends FrontWindow {
     }
 
     public static void main(String[] args) {
-        JFrame jf = new BuyerFrontWindow(new Buyer());
+        JFrame jf = new BuyerFrontWindow(new Buyer(1,"turab1996", "123123", "Turab", "Jafri", "912932193912", "turab1996.tj@gmail.com" ));
 
     }
 }

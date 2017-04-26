@@ -15,7 +15,7 @@ public class BuyerLogInWindow extends LogInWindow{
         loginButton.addActionListener(e -> {
             if(usernameTextField.getText().equals("turab1996") && passwordTextField.getText().equals("123123")) {
                 dispose();
-               // new BuyerFrontWindow(new Buyer());
+                new BuyerFrontWindow(new Buyer(1,"turab1996", "123123", "Turab","Jafri", "9070707070", "turab1996.tj@gmail.com"));
             }
             else {
                 new JOptionPane().showMessageDialog(null, "Not idd");
@@ -29,7 +29,7 @@ public class BuyerLogInWindow extends LogInWindow{
 
     private Buyer getBuyerInfo(String username, String password) {
 
-        String uniqueID = "";
+        int uniqueID = 0;
         String fName = "";
         String lName = "";
         String contact = "";
