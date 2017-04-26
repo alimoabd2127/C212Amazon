@@ -1,4 +1,4 @@
-package guis;
+package C212Amazon;
 
 import javax.swing.*;
 import ProjectSkeleton.*;

@@ -1,4 +1,4 @@
-package guis;
+package C212Amazon;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by Turab on 4/19/2017.
  */
-public class BuyerSignUpWindow extends SignUpWindow {
+public class BuyerSignUpWindow extends SignUpWindow{
 
     // All
 

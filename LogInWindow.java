@@ -1,14 +1,16 @@
-package guis;
+package C212Amazon;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Class to display a log in window
+ * Abstract class for a log in window.
  * @author Syed Turab Ali Jafri
- * 4/17/2017
+ * 4/25/2017
  */
-public class LogInWindow extends JFrame {
+public abstract class LogInWindow extends JFrame {
+
+    private Market
 
     // All fields required for this panel.
     private final int FRAME_WIDTH = 600;
@@ -104,11 +106,6 @@ public class LogInWindow extends JFrame {
         bottomPanel.add(new JPanel());
         bottomPanel.add(new JPanel());
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
-    }
-
-    public static void main(String[] args) {
-        JFrame jf = new LogInWindow();
-
     }
 
 }

@@ -1,11 +1,11 @@
-package guis;
+package C212Amazon;
 
 import javax.swing.*;
 
-import ProjectSkeleton.Buyer;
-
 /**
- * Created by Turab on 4/25/2017.
+ * GUI for a buyer's log in window
+ * @author Syed Turab Ali jafri
+ * 4/25/2017
  */
 public class BuyerLogInWindow extends LogInWindow{
 
