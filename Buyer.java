@@ -30,9 +30,9 @@ public class Buyer extends Account {
     //User's contact.
     private String contact;
 
-    public Buyer(String username, String password, String firstName, String lastName, String phone, String email) {
+    public Buyer(String uniqueID, String username, String password, String firstName, String lastName, String phone, String email) {
 
-        super(username, password, email);
+        super(uniqueID, username, password, email);
         this.firstName = firstName;
         this.lastName = lastName;
         this.contact = phone;
@@ -49,11 +49,6 @@ public class Buyer extends Account {
      * checks out the cart
      */
     public void buyAllAvailable() {}
-
-    /**
-     * Method to create a buyer account.
-     */
-    public void create() {}
 
     /**
      * Method to get the First Name.

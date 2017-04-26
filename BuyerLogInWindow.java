@@ -9,6 +9,8 @@ import javax.swing.*;
  */
 public class BuyerLogInWindow extends LogInWindow{
 
+    
+
     public BuyerLogInWindow() {
         loginButton.addActionListener(e -> {
             if(usernameTextField.getText().equals("turab1996") && passwordTextField.getText().equals("123123")) {

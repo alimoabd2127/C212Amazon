@@ -17,7 +17,7 @@ public abstract class Account {
     // Email
     private String emailAddress;
 
-    public Account(String username, String password, String emailAddress) {
+    public Account(String uniqueID, String username, String password, String emailAddress) {
 
         this.userName = username;
         this.password = password;
