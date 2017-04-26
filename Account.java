@@ -9,7 +9,7 @@ package C212Amazon;
 public abstract class Account {
 
     // Unique ID of the account.
-    private String uniqueID;
+    private int uniqueID;
     // Username
     private String userName;
     // Password
