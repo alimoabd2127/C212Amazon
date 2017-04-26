@@ -107,7 +107,7 @@ public class BuyerFrontWindow extends FrontWindow {
     }
 
     public static void main(String[] args) {
-        JFrame jf = new BuyerFrontWindow(new Buyer());
+        //JFrame jf = new BuyerFrontWindow(new Buyer());
 
     }
 }
