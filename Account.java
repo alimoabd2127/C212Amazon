@@ -39,11 +39,6 @@ public abstract class Account {
     }
 
     /**
-     * creates an account.
-     */
-    public abstract void create();
-
-    /**
      * sets a user name
      * @param userName The new username
      */

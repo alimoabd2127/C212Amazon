@@ -67,4 +67,8 @@ public class BuyerDataReader {
     public String getEmail(String id){
         return "";
     }
+
+    public boolean verify(String username, String password) {
+     return false;
+    }
 }
