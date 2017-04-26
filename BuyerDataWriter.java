@@ -1,5 +1,6 @@
 package C212Amazon;
 
+import java.sql.*;
 /**
  * Class to edit a buyer data file.
  * @author Syed Turab Ali Jafri.
@@ -7,12 +8,24 @@ package C212Amazon;
  */
 public class BuyerDataWriter extends DataWriter{
 
+    private Connection conn = databaseConnector();
     /**
      * Method to create a new buyer account.
      * @param buyer The Buyer object whose account is created.
      */
     public void createBuyer(Buyer buyer) {
+        String sqlQuery = "INSERT INTO buyer (buyer.username, buyer.password, buyer.firstname, buyer.lastname, buyer.phone, buyer.email)" +
+                "VALUES ('" + buyer.getUserName() + "', '" + buyer.getPassword() + "', "
+                + "'" + buyer.getFirstName() + "', '" + buyer.getLastName() + "', '"
+                + buyer.getContact() + "', '" + buyer.getEmailAddress() + "');";
 
+        try{
+            Statement query = conn.createStatement();
+            query.executeUpdate(sqlQuery);
+        }
+        catch (Exception e){
+            System.err.println(e.getMessage());
+        }
     }
 
     /**
@@ -68,5 +81,4 @@ public class BuyerDataWriter extends DataWriter{
     public void setEmail(String id, String email) {
 
     }
-
 }
