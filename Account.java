@@ -1,7 +1,5 @@
 package C212Amazon;
 
-import java.io.File;
-
 /**
  * Account
  * abstract class that represents accounts
@@ -16,17 +14,29 @@ public abstract class Account {
     private String userName;
     // Password
     private String password;
-    // Contact
-    private String contact;
     // Email
     private String emailAddress;
 
+    public Account(String username, String password, String emailAddress) {
+
+        this.userName = username;
+        this.password = password;
+        this.emailAddress = emailAddress;
+    }
 
     /**
      * returns a user name
      * @return The username.
      */
     public String getUserName() { return userName; }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
 
     /**
      * creates an account.
@@ -44,12 +54,6 @@ public abstract class Account {
      * @param password The new password.
      */
     public void setPassword(String password) { this.password = password; }
-
-    /**
-     * sets a contact
-     * @param contact The new contact information
-     */
-    public void setContact(String contact) { this.contact = contact; }
 
     /**
      * sets an email address

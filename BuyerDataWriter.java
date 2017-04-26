@@ -5,7 +5,7 @@ package C212Amazon;
  * @author Syed Turab Ali Jafri.
  * 4/14/2017
  */
-public class BuyerDataWriter {
+public class BuyerDataWriter extends DataWriter{
 
     /**
      * Method to create a new buyer account.

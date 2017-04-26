@@ -10,16 +10,33 @@ import java.util.HashMap;
  */
 public class Buyer extends Account {
 
+    private Market market;
+
     //Shopping cart.
     private HashMap cart;
+
     //Total cost of item selected.
-    private int totalCost;
+    private int totalCost = 0;
+
     //Current number of items.
-    private int currentNumberOfItem;
-    //First RA you will talk to.
+    private int currentNumberOfItem = 0;
+
+    //User's first name.
     private String firstName;
-    //First RA with a meeting tomorrow.
+
+    //User's last name.
     private String lastName;
+
+    //User's contact.
+    private String contact;
+
+    public Buyer(String username, String password, String firstName, String lastName, String phone, String email) {
+
+        super(username, password, email);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.contact = phone;
+    }
 
     /**
      * adds a product to the cart
@@ -52,6 +69,14 @@ public class Buyer extends Account {
      */
     public String getLastName() {
         return lastName;
+    }
+
+    /**
+     * Method to get user's contact
+     * @return user's contact.
+     */
+    public String getContact() {
+        return contact;
     }
 
     /**

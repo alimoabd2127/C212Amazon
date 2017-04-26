@@ -10,7 +10,7 @@ import java.awt.*;
  */
 public abstract class LogInWindow extends JFrame {
 
-    private Market
+    private Market market = new Market();
 
     // All fields required for this panel.
     private final int FRAME_WIDTH = 600;

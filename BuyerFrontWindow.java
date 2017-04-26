@@ -1,7 +1,5 @@
 package C212Amazon;
 
-import ProjectSkeleton.Buyer;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
