@@ -19,15 +19,12 @@ public abstract class SignUpWindow extends JFrame {
 
     protected JLabel usernameLabel = new JLabel("Username: ");
     protected JTextField usernameTextField = new JTextField(20);
-    protected String username = "";
 
     protected JLabel passwordLabel = new JLabel("Password: ");
     protected JPasswordField passwordTextField = new JPasswordField(20);
-    protected String password = "";
 
     protected JLabel confirmPasswordLabel = new JLabel("                Confirm Password: ");
     protected JPasswordField confirmedPasswordTextField = new JPasswordField(20);
-    protected String confirmedPassword = "";
 
     protected JButton cancelButton = new JButton("Cancel");
     protected JButton signUpButton = new JButton("Sign up");

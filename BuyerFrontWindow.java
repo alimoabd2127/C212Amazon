@@ -41,18 +41,18 @@ public class BuyerFrontWindow extends FrontWindow {
 
         mainPanel.setLayout(new BorderLayout());
 
-        try {
-            groupIcon = ImageIO.read(new File("C:\\Users\\Turab\\Downloads\\thg.jpg"));
-            groupImage = new JLabel(new ImageIcon(groupIcon));
-        }
-
-
-        catch(IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            groupIcon = ImageIO.read(new File("C:\\Users\\Turab\\Downloads\\thg.jpg"));
+//            groupImage = new JLabel(new ImageIcon(groupIcon));
+//        }
+//
+//
+//        catch(IOException e) {
+//            e.printStackTrace();
+//        }
 
         northPanel.setLayout(new BorderLayout());
-        northPanel.add(groupImage , BorderLayout.WEST);
+        //northPanel.add(groupImage , BorderLayout.WEST);
 
         searchBarPanel.add(searchBar);
         searchBarPanel.add(searchButton);

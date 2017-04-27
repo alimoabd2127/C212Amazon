@@ -13,7 +13,7 @@ public class BuyerDataWriter extends DataWriter{
      * Method to create a new buyer account.
      * @param buyer The Buyer object whose account is created.
      */
-    public void createBuyer(Buyer buyer) {
+    public boolean createBuyer(Buyer buyer) {
         String sqlQuery = "INSERT INTO buyer (buyer.username, buyer.password, buyer.firstname, buyer.lastname, buyer.phone, buyer.email)" +
                 "VALUES ('" + buyer.getUserName() + "', '" + buyer.getPassword() + "', "
                 + "'" + buyer.getFirstName() + "', '" + buyer.getLastName() + "', '"
@@ -25,7 +25,10 @@ public class BuyerDataWriter extends DataWriter{
         }
         catch (Exception e){
             System.err.println(e.getMessage());
+            return false;
         }
+
+        return true;
     }
 
     /**
