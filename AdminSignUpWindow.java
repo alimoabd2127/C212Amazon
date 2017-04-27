@@ -14,6 +14,8 @@ public class AdminSignUpWindow extends SignUpWindow {
 
     public AdminSignUpWindow() {
 
+        super("Admin");
+
         setPanelSizeAndLayout();
 
         setLeftPanel();
