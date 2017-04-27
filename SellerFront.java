@@ -1,7 +1,11 @@
 package C212Amazon;
 
 /**
- * Created by Turab on 4/22/2017.
+ * Interface for a seller.
+ * @author Syed Turab Ali Jafri
+ * 4/26/2017
  */
-public class SellerFront {
+public class SellerFront extends FrontWindow {
+
+
 }

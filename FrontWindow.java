@@ -8,7 +8,7 @@ import javax.swing.*;
 public class FrontWindow extends JFrame{
 
     protected final int FRAME_WIDTH = 1000;
-    protected final int FRAME_HEIGHT = 600;
+    protected final int FRAME_HEIGHT = 700;
     protected JPanel mainPanel = new JPanel();
 
     public FrontWindow() {

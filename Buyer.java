@@ -13,7 +13,7 @@ public class Buyer extends Account {
     private Market market;
 
     //Shopping cart.
-    private HashMap<String, Integer> cart;
+    private HashMap<Item, Integer> cart;
 
     //Total cost of item selected.
     private int totalCost = 0;
@@ -78,7 +78,7 @@ public class Buyer extends Account {
      * Method to get the buyer's cart.
      * @return This buyer's cart.
      */
-    public HashMap getCart() {
+    public HashMap<Item, Integer> getCart() {
         return cart;
     }
 

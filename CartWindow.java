@@ -1,6 +1,5 @@
 package C212Amazon;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
@@ -14,14 +13,14 @@ import java.util.Vector;
  */
 public class CartWindow extends FrontWindow{
 
-    private HashMap<String, Integer> currentCart;
+    private HashMap<Item, Integer> currentCart;
     private JLabel cartHeader = new JLabel("Cart");
     private JList<String> cartList = new JList<>();
     private JButton cancelButton = new JButton("Cancel");
     private JButton removeButton = new JButton("Remove");
     private JButton confirmButton = new JButton("Confirm");
 
-    public CartWindow(HashMap<String, Integer> cart) {
+    public CartWindow(HashMap<Item, Integer> cart) {
 
         currentCart = cart;
 
@@ -68,11 +67,17 @@ public class CartWindow extends FrontWindow{
 
     private Vector<String> getCartList() {
         Vector<String> cartList = new Vector<>();
-        Set<String> keys = currentCart.keySet();
+        if(currentCart == null || currentCart.size() == 0) {
+            cartList.add("Cart is empty");
+        }
+        else {
+            Set<Item> keys = currentCart.keySet();
 
-        for(String item: keys){
+            for (Item item : keys) {
 
-            cartList.add("(" + currentCart.get(item) + ") " + item);
+                cartList.add("(" + currentCart.get(item) + ") "
+                        + item.getProdName() + " ");
+            }
         }
 
         return cartList;

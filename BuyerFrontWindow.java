@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * @author Syed Turab Ali Jafri
@@ -14,17 +15,23 @@ public class BuyerFrontWindow extends FrontWindow {
 
     private Buyer buyer;
 
+    private ArrayList<Item> searchedItemList = new ArrayList<>();
+
     private JTextField searchBar = new JTextField(30);
     private JButton searchButton = new JButton("Search");
     private JPanel searchBarPanel = new JPanel();
     private BufferedImage groupIcon;
     private JLabel groupImage;
+
     private JButton cartButton = new JButton("Cart");
     private JButton editInfoButton = new JButton("Edit Info");
     private JPanel buttonPanel = new JPanel();
+
     private JList<String> productList = new JList<>();
+    private JPanel listPanel = new JPanel();
     private JButton clearListButton = new JButton("Clear");
     private JButton addToCartButton = new JButton("Add to Cart");
+
     private JPanel northPanel = new JPanel();
     private JPanel southPanel = new JPanel();
 
@@ -74,6 +81,10 @@ public class BuyerFrontWindow extends FrontWindow {
         buttonPanel.add(cartButton);
         buttonPanel.add(new JPanel());
 
+        cartButton.addActionListener(e -> {
+            new CartWindow(buyer.getCart());
+        });
+
         buttonPanel.add(new JPanel());
         buttonPanel.add(new JPanel());
 
@@ -88,17 +99,16 @@ public class BuyerFrontWindow extends FrontWindow {
 
         mainPanel.add(northPanel, BorderLayout.NORTH);
 
-        JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new BorderLayout());
+        listPanel.setLayout(new BorderLayout());
 
         String[] testArray = {"TEST1", "TEST2", "TEST3", "TEST4", "TEST5", "TEST6", "TEST7", "TEST8", "TEST9", "TEST10", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A","C", "B"};
         productList = new JList<>(testArray);
         productList.setFont(new Font(null, 0, 15));
-        centerPanel.add(new JScrollPane(productList), BorderLayout.CENTER);
-        centerPanel.add(new JPanel(), BorderLayout.NORTH);
-        centerPanel.add(new JPanel(), BorderLayout.SOUTH);
+        listPanel.add(new JScrollPane(productList), BorderLayout.CENTER);
+        listPanel.add(new JPanel(), BorderLayout.NORTH);
+        listPanel.add(new JPanel(), BorderLayout.SOUTH);
 
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
+        mainPanel.add(listPanel, BorderLayout.CENTER);
 
         mainPanel.add(new JPanel(), BorderLayout.WEST);
         mainPanel.add(new JPanel(), BorderLayout.EAST);
