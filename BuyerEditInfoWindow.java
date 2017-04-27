@@ -40,8 +40,6 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
         actualEmailLabel.setText(buyer.getEmailAddress());
 
         setTitle("Edit Buyer");
-        setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        setResizable(false);
 
         mainPanel.setLayout(new BorderLayout());
         headerLabel.setHorizontalAlignment(0);

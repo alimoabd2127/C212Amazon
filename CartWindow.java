@@ -23,6 +23,7 @@ public class CartWindow extends FrontWindow{
     public CartWindow(HashMap<Item, Integer> cart) {
 
         super("Cart");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         currentCart = cart;
 

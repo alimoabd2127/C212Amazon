@@ -21,7 +21,7 @@ public class FrontWindow extends JFrame{
         super(windowTitle);
         setSize(FRAME_WIDTH,FRAME_HEIGHT);
         setResizable(false);
-        setLocation(450,250);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 }

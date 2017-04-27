@@ -34,7 +34,7 @@ public abstract class SignUpWindow extends JFrame {
         setSize(FRANE_WIDTH, FRAME_HEIGHT);
         setResizable(false);
         add(mainPanel);
-        setLocation(600,400);
+        setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
