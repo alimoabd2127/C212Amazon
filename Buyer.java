@@ -28,14 +28,14 @@ public class Buyer extends Account {
     private String lastName;
 
     //User's contact.
-    private String contact;
+    private String phone;
 
     public Buyer(int uniqueID, String username, String password, String firstName, String lastName, String phone, String email) {
 
         super(uniqueID, username, password, email);
         this.firstName = firstName;
         this.lastName = lastName;
-        this.contact = phone;
+        this.phone = phone;
     }
 
     /**
@@ -70,8 +70,8 @@ public class Buyer extends Account {
      * Method to get user's contact
      * @return user's contact.
      */
-    public String getContact() {
-        return contact;
+    public String getPhone() {
+        return phone;
     }
 
     /**

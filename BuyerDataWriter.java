@@ -17,7 +17,7 @@ public class BuyerDataWriter extends DataWriter{
         String sqlQuery = "INSERT INTO buyer (buyer.username, buyer.password, buyer.firstname, buyer.lastname, buyer.phone, buyer.email)" +
                 "VALUES ('" + buyer.getUserName() + "', '" + buyer.getPassword() + "', "
                 + "'" + buyer.getFirstName() + "', '" + buyer.getLastName() + "', '"
-                + buyer.getContact() + "', '" + buyer.getEmailAddress() + "');";
+                + buyer.getPhone() + "', '" + buyer.getEmailAddress() + "');";
 
         try{
             Statement query = conn.createStatement();

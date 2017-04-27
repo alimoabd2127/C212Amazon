@@ -19,11 +19,15 @@ public abstract class Account {
 
     public Account(int uniqueID, String username, String password, String emailAddress) {
 
+        this.uniqueID = uniqueID;
         this.userName = username;
         this.password = password;
         this.emailAddress = emailAddress;
     }
 
+    public int getUniqueID(){
+        return uniqueID;
+    }
     /**
      * returns a user name
      * @return The username.
