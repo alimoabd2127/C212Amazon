@@ -13,17 +13,17 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
     private Buyer buyer = null;
 
     private JLabel firstNameLabel = new JLabel("First name: ");
-    private String firstName = buyer.getFirstName();
+    private String firstName;
     private JLabel actualFirstNameLabel = new JLabel(firstName);
     private JButton firstNameButton = new JButton("Edit");
 
     private JLabel lastNameLabel = new JLabel("Last name: ") ;
-    private String lastname = buyer.getLastName();
+    private String lastname;
     private JLabel actualLastNameLabel = new JLabel(lastname);
     private JButton lastNameButton = new JButton("Edit");
 
     private JLabel phoneLabel = new JLabel("Phone: ");
-    private String phone = buyer.getPhone();
+    private String phone;
     private JLabel actualPhoneLabel = new JLabel(phone);
     private JButton phoneButton = new JButton("Edit");
 
@@ -35,6 +35,9 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
         this.buyer = buyer;
 
         username = buyer.getUserName();
+        firstName = buyer.getFirstName();
+        lastname = buyer.getLastName();
+        phone = buyer.getPhone();
         email = buyer.getEmailAddress();
 
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -100,7 +103,6 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
         mainPanel.add(centerPanel, BorderLayout.CENTER);
         mainPanel.add(new JPanel(), BorderLayout.EAST);
         add(mainPanel);
-
 
     }
 

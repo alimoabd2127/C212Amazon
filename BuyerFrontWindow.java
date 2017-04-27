@@ -92,7 +92,7 @@ public class BuyerFrontWindow extends FrontWindow {
         buttonPanel.add(new JPanel());
 
         buttonPanel.add(editInfoButton);
-        editInfoButton.addActionListener(e -> new BuyerEditInfoWindow());
+        editInfoButton.addActionListener(e -> new BuyerEditInfoWindow(buyer));
         buttonPanel.add(new JPanel());
 
         buttonPanel.add(new JPanel());
