@@ -18,6 +18,9 @@ public class BuyerLogInWindow extends LogInWindow{
 
     // constructor
     public BuyerLogInWindow() {
+
+        super("Buyer Login");
+
         loginButton.addActionListener(e -> {
             if(buyerDataReader.verifyBuyer(usernameTextField.getText(), passwordTextField.getText())) {
                 dispose();
