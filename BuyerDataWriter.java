@@ -137,14 +137,4 @@ public class BuyerDataWriter extends DataWriter{
             System.err.println(e.getMessage());
         }
     }
-
-    public static void main(String[] args) {
-        BuyerDataWriter bdw = new BuyerDataWriter();
-        bdw.setUserName(2, "Jash");
-        bdw.setPassword(2, "testpass2");
-        bdw.setFirstName(2, "Josh");
-        bdw.setLastName(2, "Boogie");
-        bdw.setPhone(2, "0987654321");
-        bdw.setEmail(2, "jashboogie@iu.edu");
-    }
 }
