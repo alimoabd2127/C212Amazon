@@ -13,18 +13,15 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
     private Buyer buyer = null;
 
     private JLabel firstNameLabel = new JLabel("First name: ");
-    private String firstName;
-    private JLabel actualFirstNameLabel = new JLabel(firstName);
+    private JLabel actualFirstNameLabel = new JLabel();
     private JButton firstNameButton = new JButton("Edit");
 
     private JLabel lastNameLabel = new JLabel("Last name: ") ;
-    private String lastname;
-    private JLabel actualLastNameLabel = new JLabel(lastname);
+    private JLabel actualLastNameLabel = new JLabel();
     private JButton lastNameButton = new JButton("Edit");
 
     private JLabel phoneLabel = new JLabel("Phone: ");
-    private String phone;
-    private JLabel actualPhoneLabel = new JLabel(phone);
+    private JLabel actualPhoneLabel = new JLabel();
     private JButton phoneButton = new JButton("Edit");
 
     private JLabel headerLabel = new JLabel("Account Information");
@@ -34,11 +31,11 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
 
         this.buyer = buyer;
 
-        username = buyer.getUserName();
-        firstName = buyer.getFirstName();
-        lastname = buyer.getLastName();
-        phone = buyer.getPhone();
-        email = buyer.getEmailAddress();
+        actualUsernameLabel.setText(buyer.getUserName());
+        actualFirstNameLabel.setText(buyer.getFirstName());
+        actualLastNameLabel.setText(buyer.getLastName());
+        actualPhoneLabel.setText(buyer.getPhone());
+        actualEmailLabel.setText(buyer.getEmailAddress());
 
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setVisible(true);
@@ -64,9 +61,8 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
         firstNameButton.addActionListener(e -> {
             JOptionPane jop = new JOptionPane();
             String firstn = jop.showInputDialog(null, "Enter new username:");
-            firstName = firstn;
-            actualFirstNameLabel.setText(firstName);
-            jop.showMessageDialog(null, "First name changed to " + firstName + " successfully");
+            actualFirstNameLabel.setText(firstn);
+            jop.showMessageDialog(null, "First name changed to " + firstn + " successfully");
         });
 
         lastNameLabel.setHorizontalAlignment(JLabel.RIGHT);

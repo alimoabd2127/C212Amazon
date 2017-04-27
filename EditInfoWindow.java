@@ -12,8 +12,7 @@ public class EditInfoWindow extends JFrame {
     protected int FRAME_HEIGHT = 700;
 
     protected JLabel usernameLabel = new JLabel("Username: ");
-    protected String username = "turab1996";
-    protected JLabel actualUsernameLabel = new JLabel(username);
+    protected JLabel actualUsernameLabel = new JLabel();
     protected JButton usernameButton = new JButton("Edit");
 
     protected JLabel passwordLabel = new JLabel("Password: ");
@@ -21,8 +20,7 @@ public class EditInfoWindow extends JFrame {
     protected JButton passwordButton = new JButton("Edit");
 
     protected JLabel emailLabel = new JLabel("Email: ");
-    protected String email = "turab1996.tj@gmail.com";
-    protected JLabel actualEmailLabel = new JLabel(email);
+    protected JLabel actualEmailLabel = new JLabel();
     protected JButton emailButton = new JButton("Edit");
 
 
