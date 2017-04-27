@@ -60,9 +60,119 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
 
         firstNameButton.addActionListener(e -> {
             JOptionPane jop = new JOptionPane();
-            String firstn = jop.showInputDialog(null, "Enter new username:");
-            actualFirstNameLabel.setText(firstn);
-            jop.showMessageDialog(null, "First name changed to " + firstn + " successfully");
+            String firstn = "" + jop.showInputDialog(null, "Enter new first name:");
+
+            if(firstn.equals(actualFirstNameLabel.getText())){
+
+            }
+            else if(firstn.length() < 4) {
+                jop.showMessageDialog(null, "First name should be at least 4 characters long."
+                ,"Error",JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                jop.showMessageDialog(null, "First name changed to " + firstn + " successfully."
+                , "Success", JOptionPane.INFORMATION_MESSAGE);
+                actualFirstNameLabel.setText(firstn);
+            }
+
+        });
+
+        lastNameButton.addActionListener(e -> {
+            JOptionPane jop = new JOptionPane();
+            String lastn = "" + jop.showInputDialog(null, "Enter new last name:");
+
+            if(lastn.equals(actualLastNameLabel.getText())){
+
+            }
+            else if(lastn.length() < 4) {
+                jop.showMessageDialog(null, "Last name should be at least 4 characters long."
+                ,"Error",JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                jop.showMessageDialog(null, "Last name changed to " + lastn + " successfully."
+                , "Success", JOptionPane.INFORMATION_MESSAGE);
+                actualLastNameLabel.setText(lastn);
+            }
+
+        });
+
+        usernameButton.addActionListener(e -> {
+            JOptionPane jop = new JOptionPane();
+            String usern = "" + jop.showInputDialog(null, "Enter new username:");
+
+            if(usern.equals(actualUsernameLabel.getText())){
+
+            }
+            else if(usern.length() < 4) {
+                jop.showMessageDialog(null, "Username should be at least 4 characters long."
+                ,"Error",JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                jop.showMessageDialog(null, "Username changed to " + usern + " successfully."
+                , "Success", JOptionPane.INFORMATION_MESSAGE);
+                actualUsernameLabel.setText(usern);
+            }
+
+        });
+
+        passwordButton.addActionListener(e -> {
+            JOptionPane jop = new JOptionPane();
+            String password = "" + jop.showInputDialog(null, "Enter new password:");
+            String confirmation = "|" + jop.showInputDialog(null,"Confirm new password:");
+            if(password.equals(actualPasswordLabel.getText()) && confirmation.equals(actualPasswordLabel.getText())){
+
+            }
+            else if(password.length() < 8) {
+                jop.showMessageDialog(null, "Password should be at least 8 characters long."
+                ,"Error",JOptionPane.ERROR_MESSAGE);
+            }
+            else if (!password.equals(confirmation)) {
+                jop.showMessageDialog(null, "Passwords do not match.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                jop.showMessageDialog(null, "Password changed successfully."
+                , "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        });
+
+        phoneButton.addActionListener(e -> {
+            JOptionPane jop = new JOptionPane();
+            String newphone = "" + jop.showInputDialog(null, "Enter new phone number:");
+
+            if(newphone.equals(actualPhoneLabel.getText())){
+
+            }
+            else if(newphone.length() < 10) {
+                jop.showMessageDialog(null, "Phone number should be at least 10 characters long."
+                ,"Error",JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                jop.showMessageDialog(null, "Phone number changed to " + newphone + " successfully."
+                , "Success", JOptionPane.INFORMATION_MESSAGE);
+                actualPhoneLabel.setText(newphone);
+            }
+
+        });
+
+        emailButton.addActionListener(e -> {
+            JOptionPane jop = new JOptionPane();
+            String emailn = "" + jop.showInputDialog(null, "Enter new email address:");
+
+            if(emailn.equals(actualEmailLabel.getText())){
+
+            }
+            else if(emailn.length() < 5) {
+                jop.showMessageDialog(null, "Email address should be at least 5 characters long."
+                ,"Error",JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                jop.showMessageDialog(null, "Email address changed to " + emailn + " successfully."
+                , "Success", JOptionPane.INFORMATION_MESSAGE);
+                actualEmailLabel.setText(emailn);
+            }
+
         });
 
         lastNameLabel.setHorizontalAlignment(JLabel.RIGHT);
