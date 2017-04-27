@@ -45,7 +45,7 @@ public class MainWindow extends JFrame{
 
         add(mainPanel);
         setResizable(false);
-        setLocation(600,400);
+        setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
