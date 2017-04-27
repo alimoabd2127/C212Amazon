@@ -17,13 +17,9 @@ public class Buyer extends Account {
     private HashMap<Item, Integer> cart;    // Shopping cart.
     private int totalCost = 0;              // Total cost of item selected.
     private int currentNumberOfItem = 0;    // Current number of items.
-    int UniqueID;                           // User's uniqueID
     private String firstName;               // User's first name.
     private String lastName;                // User's last name.
     private String phone;                   // User's contact.
-    private String email;
-
-
 
     // constructor
     public Buyer(int uniqueID, String username, String password, String firstName, String lastName, String phone, String email) {
@@ -36,21 +32,12 @@ public class Buyer extends Account {
     // methods
     /**
      * adds a product to the cart
-
      * @param productID ID of the product
      * @param sellerID ID of seller who is selling the product.
-
      * @param quantity ID of the item.
-
-     * @param date ID of the item.
-
-
      */
     public void addToCart(int productID, int sellerID, int quantity) {
-
-
         //Item item = new Item()
-
         // get the item b
         //this.cart.put(productIndex, sellerID);
     }
@@ -60,7 +47,7 @@ public class Buyer extends Account {
      * Method to check out the cart
      * TODO Should we rename buyAllAvailable to checkout?
      */
-    public void buyAllAvailable(int buyerID, Date date) {
+    public void buyAllAvailable(int buyerID) {
         //
 
         cart.clear();
