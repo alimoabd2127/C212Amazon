@@ -2,6 +2,7 @@ package C212Amazon;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 
 /**
@@ -12,13 +13,24 @@ public class BuyerDataReader extends DataReader {
     private Connection conn = databaseConnector();
 
     /**
-     * Method to get the description for that specific buyer
+     * Method to get the username for that specific buyer
      *
      * @param id A string with the unique id of the buyer
-     * @return returns a string of the details of the buyer
+     * @return returns a string of the username of the buyer
      */
-    public String getBuyerDetails(String id) {
-        return "";
+    public String getUsername(int id) {
+        String sqlQuery = "SELECT username FROM buyer WHERE buyer.id = '" + id + "';";
+        ResultSet rs = null;
+        String output = "";
+        try {
+            Statement query = conn.createStatement();
+            rs = query.executeQuery(sqlQuery);
+            rs.next();
+            output = rs.getString("username");
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return output;
     }
 
     /**
@@ -27,18 +39,19 @@ public class BuyerDataReader extends DataReader {
      * @param id A string with the unique id of the buyer
      * @return returns a string of the password of the buyer
      */
-    public String getPassword(String id) {
-        return "";
-    }
-
-    /**
-     * Method to get the username for that specific buyer
-     *
-     * @param id A string with the unique id of the buyer
-     * @return returns a string of the username of the buyer
-     */
-    public String getUsername(String id) {
-        return "";
+    public String getPassword(int id) {
+        String sqlQuery = "SELECT password FROM buyer WHERE buyer.id = '" + id + "';";
+        ResultSet rs = null;
+        String output = "";
+        try {
+            Statement query = conn.createStatement();
+            rs = query.executeQuery(sqlQuery);
+            rs.next();
+            output = rs.getString("password");
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return output;
     }
 
     /**
@@ -47,8 +60,19 @@ public class BuyerDataReader extends DataReader {
      * @param id A string with the unique id of the buyer
      * @return returns a string of the first name of the buyer
      */
-    public String getFirstName(String id) {
-        return "";
+    public String getFirstName(int id) {
+        String sqlQuery = "SELECT firstname FROM buyer WHERE buyer.id = '" + id + "';";
+        ResultSet rs = null;
+        String output = "";
+        try {
+            Statement query = conn.createStatement();
+            rs = query.executeQuery(sqlQuery);
+            rs.next();
+            output = rs.getString("firstname");
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return output;
     }
 
     /**
@@ -57,8 +81,19 @@ public class BuyerDataReader extends DataReader {
      * @param id A string with the unique id of the buyer
      * @return returns a string of the last name of the buyer
      */
-    public String getLastName(String id) {
-        return "";
+    public String getLastName(int id) {
+        String sqlQuery = "SELECT lastname FROM buyer WHERE buyer.id = '" + id + "';";
+        ResultSet rs = null;
+        String output = "";
+        try {
+            Statement query = conn.createStatement();
+            rs = query.executeQuery(sqlQuery);
+            rs.next();
+            output = rs.getString("lastname");
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return output;
     }
 
     /**
@@ -67,8 +102,19 @@ public class BuyerDataReader extends DataReader {
      * @param id A string with the unique id of the buyer
      * @return returns a string of the contact information of the buyer
      */
-    public String getContact(String id) {
-        return "";
+    public String getPhone(int id) {
+        String sqlQuery = "SELECT phone FROM buyer WHERE buyer.id = '" + id + "';";
+        ResultSet rs = null;
+        String output = "";
+        try {
+            Statement query = conn.createStatement();
+            rs = query.executeQuery(sqlQuery);
+            rs.next();
+            output = rs.getString("phone");
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return output;
     }
 
     /**
@@ -77,33 +123,31 @@ public class BuyerDataReader extends DataReader {
      * @param id A string with the unique id of the buyer
      * @return returns a string of the email of the buyer
      */
-    public String getEmail(String id) {
-        return "";
-    }
-
-    public boolean verifyBuyer(String username, String password) {
-        String sqlQuery = "SELECT password FROM buyer WHERE buyer.username COLLATE utf8mb4_bin = '" + username + "';";
+    public String getEmail(int id) {
+        String sqlQuery = "SELECT email FROM buyer WHERE buyer.id = '" + id + "';";
         ResultSet rs = null;
+        String output = "";
         try {
             Statement query = conn.createStatement();
             rs = query.executeQuery(sqlQuery);
+            rs.next();
+            output = rs.getString("email");
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        if (rs == null) {
-            return false;
-        }
+        return output;
+    }
 
+    public boolean verifyNewUsername(String username) {
+        String sqlQuery = "SELECT username FROM buyer WHERE buyer.username COLLATE utf8mb4_bin = '" + username + "'";
         try {
-            rs.next();
-            if (rs == null) {
+            Statement query = conn.createStatement();
+            ResultSet rs = query.executeQuery(sqlQuery);
+            if(!rs.next()){
                 return false;
             }
-            String tempPass = rs.getString("password");
-            if (tempPass.equals(password)) {
+            else{
                 return true;
-            } else {
-                return false;
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -113,17 +157,17 @@ public class BuyerDataReader extends DataReader {
 
     public Buyer getBuyer(String username) {
         String sqlQuery = "SELECT * FROM buyer WHERE buyer.username COLLATE utf8mb4_bin = '" + username + "';";
-        ResultSet rs = null;
+
         try {
             Statement query = conn.createStatement();
-            rs = query.executeQuery(sqlQuery);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        int id = 0;
-        String uname = "", pass = "", first = "", last = "", phone = "", email = "";
-        try {
-            rs.next();
+            ResultSet rs = query.executeQuery(sqlQuery);
+
+            int id = 0;
+            String uname = "", pass = "", first = "", last = "", phone = "", email = "";
+
+            if(!rs.next()){
+                System.out.println("No User");
+            }
             id = rs.getInt("id");
             uname = rs.getString("username");
             pass = rs.getString("password");
@@ -138,16 +182,24 @@ public class BuyerDataReader extends DataReader {
         }
     }
 
-    public static void main(String[] args) {
-        BuyerDataReader bdr = new BuyerDataReader();
-        System.out.println("Login: " + bdr.verifyBuyer("Jash", "testpass2"));
-        Buyer test = bdr.getBuyer("Jash");
-        System.out.println(test.getUniqueID());
-        System.out.println(test.getUserName());
-        System.out.println(test.getPassword());
-        System.out.println(test.getLastName());
-        System.out.println(test.getFirstName());
-        System.out.println(test.getEmailAddress());
-        System.out.println(test.getPhone());
+    public boolean verifyBuyer(String username, String password) {
+        String sqlQuery = "SELECT * FROM buyer WHERE buyer.username COLLATE utf8mb4_bin = '" + username + "';";
+        try {
+            Statement query = conn.createStatement();
+            ResultSet rs = query.executeQuery(sqlQuery);
+
+            if (!rs.next()) {
+                return false;
+            }
+            String tempPass = rs.getString("password");
+            if (tempPass.equals(password)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
     }
 }
