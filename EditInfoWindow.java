@@ -4,7 +4,7 @@ import javax.swing.*;
 /**
  * Created by Turab on 4/24/2017.
  */
-public class editInfoWindow extends JFrame {
+public class EditInfoWindow extends JFrame {
 
 
     protected JPanel mainPanel = new JPanel();

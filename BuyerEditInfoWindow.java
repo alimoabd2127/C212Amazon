@@ -8,27 +8,34 @@ import java.awt.*;
  * @author Syed Turab Ali Jafri
  * 4/24/2017
  */
-public class BuyerEditInfoWindow extends editInfoWindow{
+public class BuyerEditInfoWindow extends EditInfoWindow {
+
+    private Buyer buyer = null;
 
     private JLabel firstNameLabel = new JLabel("First name: ");
-    private String firstName = "testFirstName";
+    private String firstName = buyer.getFirstName();
     private JLabel actualFirstNameLabel = new JLabel(firstName);
-    private JButton firstNameButton = new JButton("fEdit");
+    private JButton firstNameButton = new JButton("Edit");
 
     private JLabel lastNameLabel = new JLabel("Last name: ") ;
-    private String lastname = "testLastName";
+    private String lastname = buyer.getLastName();
     private JLabel actualLastNameLabel = new JLabel(lastname);
-    private JButton lastNameButton = new JButton("lEdit");
+    private JButton lastNameButton = new JButton("Edit");
 
     private JLabel phoneLabel = new JLabel("Phone: ");
-    private String phone = "3179999999";
+    private String phone = buyer.getPhone();
     private JLabel actualPhoneLabel = new JLabel(phone);
-    private JButton phoneButton = new JButton("pEdit");
+    private JButton phoneButton = new JButton("Edit");
 
     private JLabel headerLabel = new JLabel("Account Information");
     private JPanel centerPanel = new JPanel();
 
-    public BuyerEditInfoWindow() {
+    public BuyerEditInfoWindow(Buyer buyer) {
+
+        this.buyer = buyer;
+
+        username = buyer.getUserName();
+        email = buyer.getEmailAddress();
 
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setVisible(true);
@@ -50,6 +57,7 @@ public class BuyerEditInfoWindow extends editInfoWindow{
         actualFirstNameLabel.setHorizontalAlignment(JLabel.CENTER);
         centerPanel.add(actualFirstNameLabel);
         centerPanel.add(firstNameButton);
+
         firstNameButton.addActionListener(e -> {
             JOptionPane jop = new JOptionPane();
             String firstn = jop.showInputDialog(null, "Enter new username:");
@@ -96,7 +104,4 @@ public class BuyerEditInfoWindow extends editInfoWindow{
 
     }
 
-    public static void main(String[] args) {
-        BuyerEditInfoWindow beiw = new BuyerEditInfoWindow();
-    }
 }
