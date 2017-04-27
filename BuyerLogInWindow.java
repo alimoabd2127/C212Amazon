@@ -1,16 +1,22 @@
+/**
+ * BuyerLoginWindow
+ * GUI for a buyer's login window
+ *
+ * @author Syed Turab Ali jafri
+ * 4/25/2017
+ */
+
 package C212Amazon;
 
 import javax.swing.*;
 
-/**
- * GUI for a buyer's log in window
- * @author Syed Turab Ali jafri
- * 4/25/2017
- */
+
 public class BuyerLogInWindow extends LogInWindow{
 
+    // parameters
     BuyerDataReader buyerDataReader = new BuyerDataReader();
 
+    // constructor
     public BuyerLogInWindow() {
         loginButton.addActionListener(e -> {
             if(buyerDataReader.verifyBuyer(usernameTextField.getText(), passwordTextField.getText())) {
