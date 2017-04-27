@@ -25,7 +25,6 @@ public class BuyerDataWriter extends DataWriter{
         }
         catch (Exception e){
             System.err.println(e.getMessage());
-            return false;
         }
 
         return true;

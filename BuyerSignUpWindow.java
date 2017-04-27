@@ -135,24 +135,28 @@ public class BuyerSignUpWindow extends SignUpWindow {
                 error += "Invalid password (8)\n";
                 phoneTextField.setText("");
             }
+            else if(!confirmedPasswordTextField.getText().equals(passwordTextField.getText())) {
+                errors++;
+                error += "Passwords don't match.";
+            }
             if (firstNameTextField.getText().length() < 3) {
                 errors++;
-                error += "Invalid first name (3)";
+                error += "Invalid first name (3)\n";
                 firstNameTextField.setText("");
             }
             if (lastNameTextField.getText().length() < 3) {
                 errors++;
-                error += "Invalid last name (3)";
+                error += "Invalid last name (3)\n";
                 lastNameTextField.setText("");
             }
             if (phoneTextField.getText().length() < 10) {
                 errors++;
-                error += "Invalid phone number (10)";
+                error += "Invalid phone number (10)\n";
                 phoneTextField.setText("");
             }
             if (emailAddressTextField.getText().length() < 5) {
                 errors++;
-                error += "Invalid email address (5)";
+                error += "Invalid email address (5)\n";
                 emailAddressTextField.setText("");
             }
 
