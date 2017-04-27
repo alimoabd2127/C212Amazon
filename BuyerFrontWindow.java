@@ -87,7 +87,10 @@ public class BuyerFrontWindow extends FrontWindow {
         buttonPanel.add(logoffButton);
         buttonPanel.add(new JPanel());
 
-        logoffButton.addActionListener(e -> dispose());
+        logoffButton.addActionListener(e -> {
+            dispose();
+            new MainWindow();
+        });
 
         buttonPanel.add(new JPanel());
         buttonPanel.add(new JPanel());
@@ -104,9 +107,6 @@ public class BuyerFrontWindow extends FrontWindow {
 
         buttonPanel.add(editInfoButton);
         editInfoButton.addActionListener(e -> new BuyerEditInfoWindow(buyer));
-        buttonPanel.add(new JPanel());
-
-        buttonPanel.add(new JPanel());
         buttonPanel.add(new JPanel());
 
         northPanel.add(buttonPanel, BorderLayout.EAST);
