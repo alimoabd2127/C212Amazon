@@ -22,6 +22,8 @@ public class CartWindow extends FrontWindow{
 
     public CartWindow(HashMap<Item, Integer> cart) {
 
+        super("Cart");
+
         currentCart = cart;
 
         mainPanel.setLayout(new BorderLayout());
@@ -57,10 +59,7 @@ public class CartWindow extends FrontWindow{
         mainPanel.add(new JPanel(), BorderLayout.WEST);
         mainPanel.add(new JPanel(), BorderLayout.EAST);
 
-
-        setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        setResizable(false);
-        setLocation(700,500);
+        add(mainPanel);
         setVisible(true);
 
     }

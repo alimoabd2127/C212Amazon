@@ -25,6 +25,8 @@ public class SellerFront extends FrontWindow {
 
     public SellerFront() {
 
+        super("Market 46");
+
         mainPanel.setLayout(new BorderLayout());
 
         JPanel buttonPanel = new JPanel();

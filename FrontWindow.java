@@ -16,14 +16,12 @@ public class FrontWindow extends JFrame{
     protected JPanel mainPanel = new JPanel();
 
     // constructor
-    public FrontWindow() {
+    public FrontWindow(String windowTitle) {
 
-        super("TEST");
+        super(windowTitle);
         setSize(FRAME_WIDTH,FRAME_HEIGHT);
-        add(mainPanel);
         setResizable(false);
         setLocation(450,250);
-
-
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 }

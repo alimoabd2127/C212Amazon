@@ -20,7 +20,7 @@ public class MainWindow extends JFrame{
 
     public MainWindow() {
 
-        super("Group 46");
+        super("Market 46");
         setSize(FRAME_WIDTH,FRAME_HEIGHT);
 
         mainPanel.setLayout(new BorderLayout());
@@ -45,6 +45,7 @@ public class MainWindow extends JFrame{
 
         add(mainPanel);
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public static void main(String[] args) {

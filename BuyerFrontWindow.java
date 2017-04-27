@@ -14,6 +14,7 @@ import java.util.Vector;
  */
 public class BuyerFrontWindow extends FrontWindow {
 
+
     private Buyer buyer;
 
     private ArrayList<Item> searchedItemList = new ArrayList<>();
@@ -31,7 +32,6 @@ public class BuyerFrontWindow extends FrontWindow {
     private JList<String> productList = new JList<>();
     private JPanel listPanel = new JPanel();
 
-    private JButton removeItemButton = new JButton("Remove Item");
     private JButton clearListButton = new JButton("Clear");
     private JButton addToCartButton = new JButton("Add to Cart");
 
@@ -39,6 +39,8 @@ public class BuyerFrontWindow extends FrontWindow {
     private JPanel southPanel = new JPanel();
 
     public BuyerFrontWindow(Buyer buyer) {
+
+        super("Market 46");
 
         this.buyer = buyer;
 
@@ -120,18 +122,13 @@ public class BuyerFrontWindow extends FrontWindow {
         southPanel.add(new JPanel());
         southPanel.add(clearListButton);
         southPanel.add(new JPanel());
-        southPanel.add(removeItemButton);
         southPanel.add(new JPanel());
         southPanel.add(addToCartButton);
         southPanel.add(new JPanel());
 
         mainPanel.add(southPanel, BorderLayout.SOUTH);
 
-        removeItemButton.addActionListener(e -> removeButtonOperation());
-
-
-        setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        setResizable(false);
+        add(mainPanel);
         setVisible(true);
 
     }
