@@ -202,11 +202,4 @@ public class BuyerDataReader extends DataReader {
             return false;
         }
     }
-
-    public static void main(String[] args) {
-        BuyerDataReader bdr = new BuyerDataReader();
-        System.out.println(bdr.verifyNewUsername("jash"));
-        System.out.println(bdr.verifyNewUsername("Jash"));
-        System.out.println(bdr.verifyNewUsername("mocha"));
-    }
 }
