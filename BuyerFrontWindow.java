@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * @author Syed Turab Ali Jafri
@@ -17,7 +18,7 @@ public class BuyerFrontWindow extends FrontWindow {
 
     private ArrayList<Item> searchedItemList = new ArrayList<>();
 
-    private JTextField searchBar = new JTextField(30);
+    private JTextField searchBar = new JTextField(50);
     private JButton searchButton = new JButton("Search");
     private JPanel searchBarPanel = new JPanel();
     private BufferedImage groupIcon;
@@ -29,6 +30,8 @@ public class BuyerFrontWindow extends FrontWindow {
 
     private JList<String> productList = new JList<>();
     private JPanel listPanel = new JPanel();
+
+    private JButton removeItemButton = new JButton("Remove Item");
     private JButton clearListButton = new JButton("Clear");
     private JButton addToCartButton = new JButton("Add to Cart");
 
@@ -113,21 +116,41 @@ public class BuyerFrontWindow extends FrontWindow {
         mainPanel.add(new JPanel(), BorderLayout.WEST);
         mainPanel.add(new JPanel(), BorderLayout.EAST);
 
-        southPanel.setLayout(new GridLayout(1,6));
+        southPanel.setLayout(new GridLayout(1,7));
         southPanel.add(new JPanel());
         southPanel.add(clearListButton);
         southPanel.add(new JPanel());
+        southPanel.add(removeItemButton);
         southPanel.add(new JPanel());
         southPanel.add(addToCartButton);
         southPanel.add(new JPanel());
 
         mainPanel.add(southPanel, BorderLayout.SOUTH);
 
+        removeItemButton.addActionListener(e -> removeButtonOperation());
+
+
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setResizable(false);
-        setLocation(700,500);
         setVisible(true);
 
+    }
+
+    private void removeButtonOperation() {
+
+
+        DefaultListModel<String> model = (DefaultListModel) (productList.getModel());
+        int index = productList.getSelectedIndex();
+
+        if(index != -1) {
+            model.remove(index);
+        }
+        productList.updateUI();
+    }
+
+    private void clearButtonOperation() {
+
+        clearListButton.addActionListener(e -> productList.setListData(new Vector<String>()));
     }
 
     public static void main(String[] args) {

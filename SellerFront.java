@@ -1,5 +1,8 @@
 package C212Amazon;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Interface for a seller.
  * @author Syed Turab Ali Jafri
@@ -7,5 +10,61 @@ package C212Amazon;
  */
 public class SellerFront extends FrontWindow {
 
+    private JTabbedPane centerPanel = new JTabbedPane();
+
+    private JButton editInfoButton = new JButton();
+
+    private JPanel inventoryPanel = new JPanel();
+    private JList<String> itemList = new JList<>();
+    private JButton addItemButton = new JButton();
+    private JButton editItemButton = new JButton();
+    private JButton deleteItemButton = new JButton();
+
+    private JPanel historyPanel = new JPanel();
+    private JList historyList = new JList();
+
+    public SellerFront() {
+
+        mainPanel.setLayout(new BorderLayout());
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(2,1));
+        buttonPanel.add(new JPanel());
+        buttonPanel.add(editInfoButton);
+
+        JPanel northPanel = new JPanel();
+        northPanel.setLayout(new BorderLayout());
+        northPanel.add(buttonPanel, BorderLayout.EAST);
+
+        mainPanel.add(northPanel, BorderLayout.NORTH);
+
+        centerPanel.addTab("Inventory",null,inventoryPanel,"View inventory");
+        centerPanel.addTab("History",null,historyPanel,"View history");
+
+        inventoryPanel.setLayout(new BorderLayout());
+
+        JPanel inventoryButtonPanel = new JPanel();
+        inventoryButtonPanel.setLayout(new GridLayout(6,2));
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(addItemButton);
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(editItemButton);
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(deleteItemButton);
+
+        inventoryPanel.add(itemList,BorderLayout.CENTER);
+        inventoryPanel.add(new JPanel(), BorderLayout.WEST);
+        inventoryPanel.add(new JPanel(), BorderLayout.SOUTH);
+        inventoryPanel.add(inventoryButtonPanel, BorderLayout.EAST);
+
+        mainPanel.add(new JPanel(), BorderLayout.SOUTH);
+
+        add(mainPanel);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        JFrame jf = new SellerFront();
+    }
 
 }

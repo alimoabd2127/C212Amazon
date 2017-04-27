@@ -14,8 +14,10 @@ public class FrontWindow extends JFrame{
     public FrontWindow() {
 
         super("TEST");
+        setSize(FRAME_WIDTH,FRAME_HEIGHT);
         add(mainPanel);
-        setVisible(true);
+        setResizable(false);
+        setLocation(450,250);
 
 
     }
