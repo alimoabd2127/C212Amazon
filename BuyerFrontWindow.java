@@ -87,6 +87,11 @@ public class BuyerFrontWindow extends FrontWindow {
         buttonPanel.add(logoffButton);
         buttonPanel.add(new JPanel());
 
+        logoffButton.addActionListener(e -> dispose());
+
+        buttonPanel.add(new JPanel());
+        buttonPanel.add(new JPanel());
+
         buttonPanel.add(cartButton);
         buttonPanel.add(new JPanel());
 
