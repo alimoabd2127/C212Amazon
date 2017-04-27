@@ -1,3 +1,9 @@
+/**
+ * BuyerDataReader
+ * Reads buyer data from the database
+ * Created by alimo on 4/14/2017.
+ */
+
 package C212Amazon;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
@@ -5,11 +11,10 @@ import com.sun.org.apache.xpath.internal.SourceTree;
 import javax.xml.transform.Result;
 import java.sql.*;
 
-/**
- * Created by alimo on 4/14/2017.
- */
+
 public class BuyerDataReader extends DataReader {
 
+    // a database connection
     private Connection conn = databaseConnector();
 
     /**
@@ -138,6 +143,12 @@ public class BuyerDataReader extends DataReader {
         return output;
     }
 
+    /**
+     * Method to verify if a buyer exists for that specific word
+     *
+     * @param username A string with the name of the buyer
+     * @return returns A string of the email of the buyer
+     */
     public boolean verifyNewUsername(String username) {
         String sqlQuery = "SELECT username FROM buyer WHERE buyer.username COLLATE utf8mb4_bin = '" + username + "'";
         try {
@@ -155,6 +166,12 @@ public class BuyerDataReader extends DataReader {
         }
     }
 
+    /**
+     * Method to get the complete buyer
+     *
+     * @param username A string with the name of the buyer
+     * @return returns a buyer object
+     */
     public Buyer getBuyer(String username) {
         String sqlQuery = "SELECT * FROM buyer WHERE buyer.username COLLATE utf8mb4_bin = '" + username + "';";
 
@@ -182,6 +199,12 @@ public class BuyerDataReader extends DataReader {
         }
     }
 
+    /**
+     * Method to verifty if the buyers username matches their password
+     *
+     * @param username A string with the name of the buyer
+     * @return returns a buyer object
+     */
     public boolean verifyBuyer(String username, String password) {
         String sqlQuery = "SELECT * FROM buyer WHERE buyer.username COLLATE utf8mb4_bin = '" + username + "';";
         try {

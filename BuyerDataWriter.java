@@ -5,7 +5,6 @@
  * 4/14/2017
  */
 
-//
 
 package C212Amazon;
 import java.sql.*;
