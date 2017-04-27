@@ -32,6 +32,8 @@ public abstract class LogInWindow extends JFrame {
 
     public LogInWindow(String loginAccountType) {
 
+        setTitle(loginAccountType + " Log In");
+
         setSize(20 * 30, 15 * 30);
         setLocationRelativeTo(null);
         setResizable(false);

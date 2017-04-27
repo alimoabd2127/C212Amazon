@@ -24,6 +24,8 @@ public class SellerSignUpWindow extends SignUpWindow {
 
     public SellerSignUpWindow() {
 
+        super("Seller");
+
         setPanelSizeAndLayout();
 
         setLeftPanel();

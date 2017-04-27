@@ -29,8 +29,8 @@ public abstract class SignUpWindow extends JFrame {
     protected JButton cancelButton = new JButton("Cancel");
     protected JButton signUpButton = new JButton("Sign up");
 
-    public SignUpWindow() {
-        super("TEST");
+    public SignUpWindow(String signUpAccount) {
+        super(signUpAccount);
         setSize(FRANE_WIDTH, FRAME_HEIGHT);
         setResizable(false);
         add(mainPanel);
