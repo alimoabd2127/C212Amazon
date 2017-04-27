@@ -1,5 +1,10 @@
-package C212Amazon;
+/**
+ *  Front Window
+ *  An abstract class that describes the demensions for buyer, seller, and admin
+ *
+ */
 
+package C212Amazon;
 import javax.swing.*;
 
 /**
@@ -12,8 +17,8 @@ public class FrontWindow extends JFrame{
     protected final int FRAME_HEIGHT = 600;
     protected JPanel mainPanel = new JPanel();
 
+    // constructor
     public FrontWindow() {
-
 
         super("TEST");
         setSize(FRAME_WIDTH,FRAME_HEIGHT);
