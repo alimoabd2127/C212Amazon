@@ -153,8 +153,5 @@ public class BuyerFrontWindow extends FrontWindow {
         clearListButton.addActionListener(e -> productList.setListData(new Vector<String>()));
     }
 
-    public static void main(String[] args) {
-        JFrame jf = new BuyerFrontWindow(new Buyer(1,"turab1996", "123123", "Turab", "Jafri", "912932193912", "turab1996.tj@gmail.com" ));
 
-    }
 }
