@@ -8,10 +8,13 @@ import java.awt.*;
  * @author Syed Turab Ali Jafri
  * 4/26/2017
  */
-public class SellerFront extends FrontWindow {
+public class SellerFrontWindow extends FrontWindow {
+
+    private Seller seller = null;
 
     private JTabbedPane centerPanel = new JTabbedPane();
 
+    private JButton logoffButton = new JButton("Log Off");
     private JButton editInfoButton = new JButton("Edit Info");
 
     private JPanel inventoryPanel = new JPanel();
@@ -23,9 +26,11 @@ public class SellerFront extends FrontWindow {
     private JPanel historyPanel = new JPanel();
     private JList historyList = new JList();
 
-    public SellerFront() {
+    public SellerFrontWindow(Seller seller) {
 
         super("Market 46");
+
+        this.seller = seller;
 
         mainPanel.setLayout(new BorderLayout());
 
@@ -80,8 +85,5 @@ public class SellerFront extends FrontWindow {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        JFrame jf = new SellerFront();
-    }
 
 }

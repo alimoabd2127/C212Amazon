@@ -16,7 +16,6 @@ public class MainWindow extends JFrame{
     private JButton buyerSignInButton = new JButton("Buyer");
     private JButton sellerSignInButton = new JButton("Seller");
     private JButton adminSignInButton = new JButton("Admin");
-    private JButton signUpButton = new JButton("Sign up");
 
     public MainWindow() {
 
@@ -25,21 +24,22 @@ public class MainWindow extends JFrame{
 
         mainPanel.setLayout(new BorderLayout());
 
-        JPanel northPanel = new JPanel();
-        northPanel.setLayout(new BorderLayout());
-        northPanel.add(signUpButton, BorderLayout.EAST);
-
-        mainPanel.add(northPanel, BorderLayout.NORTH);
-
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new BorderLayout());
         southPanel.add(buyerSignInButton, BorderLayout.WEST);
+
         buyerSignInButton.addActionListener(e -> {
             dispose();
             new BuyerLogInWindow();
-                });
+        });
+
         southPanel.add(sellerSignInButton, BorderLayout.CENTER);
         southPanel.add(adminSignInButton, BorderLayout.EAST);
+
+        sellerSignInButton.addActionListener(e -> {
+            dispose();
+            new SellerLogInWindow();
+        });
 
         mainPanel.add(southPanel, BorderLayout.SOUTH);
 

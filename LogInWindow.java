@@ -30,9 +30,9 @@ public abstract class LogInWindow extends JFrame {
     protected JButton loginButton = new JButton("Log in");
     protected JButton signupButton = new JButton("Sign up");
 
-    public LogInWindow(String loginAccountType) {
+    public LogInWindow() {
 
-        setTitle(loginAccountType + " Log In");
+        setTitle("Market 46");
 
         setSize(20 * 30, 15 * 30);
         setLocationRelativeTo(null);
