@@ -25,6 +25,7 @@ public class BuyerFrontWindow extends FrontWindow {
     private BufferedImage groupIcon;
     private JLabel groupImage;
 
+    private JButton logoffButton = new JButton("Log off");
     private JButton cartButton = new JButton("Cart");
     private JButton editInfoButton = new JButton("Edit Info");
     private JPanel buttonPanel = new JPanel();
@@ -78,9 +79,12 @@ public class BuyerFrontWindow extends FrontWindow {
 
         northPanel.add(searchPanel, BorderLayout.CENTER);
 
-        buttonPanel.setLayout(new GridLayout(5,2));
+        buttonPanel.setLayout(new GridLayout(6,2));
 
         buttonPanel.add(new JPanel());
+        buttonPanel.add(new JPanel());
+
+        buttonPanel.add(logoffButton);
         buttonPanel.add(new JPanel());
 
         buttonPanel.add(cartButton);
@@ -150,5 +154,8 @@ public class BuyerFrontWindow extends FrontWindow {
         clearListButton.addActionListener(e -> productList.setListData(new Vector<String>()));
     }
 
+    public static void main(String[] args) {
+        JFrame jf = new BuyerFrontWindow(new Buyer(1,"2","3", "4", "5", "6", "7"));
+    }
 
 }

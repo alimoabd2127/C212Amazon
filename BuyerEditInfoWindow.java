@@ -127,7 +127,7 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
         passwordButton.addActionListener(e -> {
             JOptionPane jop = new JOptionPane();
             String password = "" + jop.showInputDialog(null, "Enter new password:");
-            String confirmation = "|" + jop.showInputDialog(null,"Confirm new password:");
+            String confirmation = "" + jop.showInputDialog(null,"Confirm new password:");
             if(password.equals(actualPasswordLabel.getText()) && confirmation.equals(actualPasswordLabel.getText())){
 
             }
