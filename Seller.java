@@ -52,7 +52,19 @@ public class Seller extends Account {
      */
     public void create() {}
 
+    /**
+     * Method to get the first name.
+     * @return The first name.
+     */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Method to get user's contact
+     * @return user's contact
+     */
+    public String getPhone() {
+        return phone;
     }
 }
