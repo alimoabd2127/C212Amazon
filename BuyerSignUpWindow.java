@@ -133,11 +133,14 @@ public class BuyerSignUpWindow extends SignUpWindow {
             if (passwordTextField.getText().length() < 8) {
                 errors++;
                 error += "Invalid password (8)\n";
-                phoneTextField.setText("");
+                passwordTextField.setText("");
+                confirmedPasswordTextField.setText("");
             }
             else if(!confirmedPasswordTextField.getText().equals(passwordTextField.getText())) {
                 errors++;
-                error += "Passwords don't match.";
+                error += "Passwords don't match.\n";
+                passwordTextField.setText("");
+                confirmedPasswordTextField.setText("");
             }
             if (firstNameTextField.getText().length() < 3) {
                 errors++;
@@ -163,12 +166,12 @@ public class BuyerSignUpWindow extends SignUpWindow {
         }
 
         if(usernameExists) {
-            jop.showMessageDialog(null, "Username already exists.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
+            errors++;
+            error += "Username already exists!\n";
             usernameTextField.setText("");
         }
 
-        if(errors > 0) {
+        if(errors == 0) {
             if(!buyerdatawriter.createBuyer(new Buyer(0,usernameTextField.getText(), passwordTextField.getText(),
                     firstNameTextField.getText(), lastNameTextField.getText(), phoneTextField.getText(),
                     emailAddressTextField.getText()))) {

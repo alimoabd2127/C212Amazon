@@ -144,14 +144,14 @@ public class BuyerDataReader extends DataReader {
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
             if(!rs.next()){
-                return false;
+                return true;
             }
             else{
-                return true;
+                return false;
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-            return false;
+            return true;
         }
     }
 
@@ -201,5 +201,12 @@ public class BuyerDataReader extends DataReader {
             System.err.println(e.getMessage());
             return false;
         }
+    }
+
+    public static void main(String[] args) {
+        BuyerDataReader bdr = new BuyerDataReader();
+        System.out.println(bdr.verifyNewUsername("jash"));
+        System.out.println(bdr.verifyNewUsername("Jash"));
+        System.out.println(bdr.verifyNewUsername("mocha"));
     }
 }
