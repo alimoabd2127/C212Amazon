@@ -23,7 +23,7 @@ public class BuyerLogInWindow extends LogInWindow{
         loginButton.addActionListener(e -> {
             if(buyerDataReader.verify("buyer",usernameTextField.getText(), passwordTextField.getText())) {
                 dispose();
-                new BuyerFrontWindow(buyerDataReader.getBuyer("table", usernameTextField.getText()));
+                new BuyerFrontWindow(buyerDataReader.getBuyer("buyer", usernameTextField.getText()));
             }
             else {
                 new JOptionPane().showMessageDialog(null, "ID or Password does not match", "Login error",JOptionPane.ERROR_MESSAGE);
