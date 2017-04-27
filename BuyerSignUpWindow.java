@@ -121,7 +121,7 @@ public class BuyerSignUpWindow extends SignUpWindow {
         String error = "";
         boolean usernameExists = true;
 
-        if (buyerdatareader.verifyNewUsername(usernameTextField.getText())) {
+        if (buyerdatareader.verifyNewUsername("buyer", usernameTextField.getText())) {
 
             usernameExists = false;
 
