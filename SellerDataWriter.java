@@ -5,10 +5,7 @@ import java.sql.*;
  */
 
 public class SellerDataWriter extends DataWriter{
-    // parameters
-    private Connection conn = databaseConnector();
 
-    // methods
     /**
      * Method to create a new buyer account.
      * @param seller The Seller object whose account is created.
@@ -20,6 +17,7 @@ public class SellerDataWriter extends DataWriter{
                 + seller.getPhone() + "', '" + seller.getEmailAddress() + "');";
 
         try{
+            Connection conn = databaseConnector();
             Statement query = conn.createStatement();
             query.executeUpdate(sqlQuery);
             conn.close();

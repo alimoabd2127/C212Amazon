@@ -14,7 +14,6 @@ public class PurchaseHistoryDataWriter extends DataWriter{
      * @param quantity
      */
     public boolean createPurchaseHistory(int cartId, int buyerId, int productId, int quantity){
-        Connection conn = databaseConnector();
         Random rand = new Random();
 
         String sqlQuery = "INSERT INTO purchasehistory (purchasehistory.cartid, purchasehistory.buyerid, purchasehistory.productid, purchasehistory.quantity, purchasehistory.checkoutdate, purchasehistory.estimatedshipping)" +
@@ -23,6 +22,7 @@ public class PurchaseHistoryDataWriter extends DataWriter{
                 + (rand.nextInt(4) + 2) + "');";
 
         try{
+            Connection conn = databaseConnector();
             Statement query = conn.createStatement();
             query.executeUpdate(sqlQuery);
             conn.close();

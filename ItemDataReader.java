@@ -7,13 +7,12 @@ import java.util.ArrayList;
  */
 public class ItemDataReader extends DataReader {
 
-    private Connection conn = databaseConnector();
-
     public ArrayList<Item> searchItems(String table, String name){
         String sqlQuery = "SELECT * FROM " + table + " WHERE " + table + ".productname LIKE '%" + name + "%';";
 
         ArrayList<Item> output = new ArrayList<>();
         try {
+            Connection conn = databaseConnector();
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
             conn.close();
@@ -51,6 +50,7 @@ public class ItemDataReader extends DataReader {
         double price = 0.0f;
 
         try {
+            Connection conn = databaseConnector();
             Statement query = conn.createStatement();
             rs = query.executeQuery(sqlQuery);
 

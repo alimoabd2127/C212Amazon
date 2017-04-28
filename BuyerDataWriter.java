@@ -11,8 +11,6 @@ import java.sql.*;
 
 public class BuyerDataWriter extends DataWriter{
 
-    private Connection conn = databaseConnector();
-
     /**
      * Method to create a new buyer account.
      * @param buyer The Buyer object whose account is created.
@@ -24,6 +22,7 @@ public class BuyerDataWriter extends DataWriter{
                 + buyer.getPhone() + "', '" + buyer.getEmailAddress() + "');";
 
         try{
+            Connection conn = databaseConnector();
             Statement query = conn.createStatement();
             query.executeUpdate(sqlQuery);
             conn.close();

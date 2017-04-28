@@ -13,15 +13,13 @@ public class DataReader {
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://db.soic.indiana.edu/c212s17_aalimov", "c212s17_aalimov", "Guu37gu6");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/amazon", "root", "password");
+            //connection = DriverManager.getConnection("jdbc:mysql://db.soic.indiana.edu/c212s17_aalimov", "c212s17_aalimov", "Guu37gu6");
         } catch (Exception e) {
             e.printStackTrace();
         }
         return connection;
     }
-
-    // a database connection
-    private Connection conn = databaseConnector();
 
     /**
      * Method to get the username for that specific buyer
@@ -34,6 +32,7 @@ public class DataReader {
         ResultSet rs = null;
         String output = "";
         try {
+            Connection conn = databaseConnector();
             Statement query = conn.createStatement();
             rs = query.executeQuery(sqlQuery);
             conn.close();
@@ -55,6 +54,7 @@ public class DataReader {
     public boolean verifyNewUsername(String table, String username) {
         String sqlQuery = "SELECT username FROM " + table + " WHERE " + table + ".username COLLATE utf8mb4_bin = '" + username + "'";
         try {
+            Connection conn = databaseConnector();
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
 
@@ -81,6 +81,7 @@ public class DataReader {
     public boolean verify(String table, String username, String password) {
         String sqlQuery = "SELECT * FROM " + table + " WHERE " + table + ".username COLLATE utf8mb4_bin = '" + username + "';";
         try {
+            Connection conn = databaseConnector();
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
 

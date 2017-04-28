@@ -6,8 +6,6 @@ import java.sql.*;
  */
 public class AdminDataWriter extends DataWriter {
 
-    private Connection conn = databaseConnector();
-
     /**
      * Method to create a new admin account.
      * @param admin The Admin object whose account is created.
@@ -18,6 +16,7 @@ public class AdminDataWriter extends DataWriter {
                 + "'" + admin.getEmailAddress() + "');";
 
         try{
+            Connection conn = databaseConnector();
             Statement query = conn.createStatement();
             query.executeUpdate(sqlQuery);
             conn.close();

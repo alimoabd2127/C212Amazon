@@ -9,12 +9,11 @@ import java.sql.*;
 
 public class BuyerDataReader extends DataReader {
 
-    private Connection conn = databaseConnector();
-
     public Buyer getBuyer(String table, String username){
         String sqlQuery = "SELECT * FROM " + table + " WHERE " + table + ".username COLLATE utf8mb4_bin = '" + username + "';";
 
         try {
+            Connection conn = databaseConnector();
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
 
