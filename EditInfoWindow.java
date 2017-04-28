@@ -26,7 +26,7 @@ public class EditInfoWindow extends JFrame {
     public EditInfoWindow() {
         setResizable(false);
         setSize(FRAME_WIDTH,FRAME_HEIGHT);
-        setLocationRelativeTo(null);
+        add(mainPanel);
     }
 
 

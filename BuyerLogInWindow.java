@@ -22,6 +22,7 @@ public class BuyerLogInWindow extends LogInWindow{
 
         setSignUpButton();
 
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 

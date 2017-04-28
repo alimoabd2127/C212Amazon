@@ -189,7 +189,7 @@ public class AdminFrontWindow extends FrontWindow{
 
         setLogOffButton();
 
-        add(mainPanel);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 

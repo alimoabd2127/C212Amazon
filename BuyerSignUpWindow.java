@@ -36,6 +36,7 @@ public class BuyerSignUpWindow extends SignUpWindow {
 
         signUpButton.addActionListener(e -> setSignUpButton());
 
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 

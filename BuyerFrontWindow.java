@@ -53,6 +53,9 @@ public class BuyerFrontWindow extends FrontWindow {
 
         setAllPanels();
 
+        setLocationRelativeTo(null);
+        setVisible(true);
+
     }
 
 
@@ -86,8 +89,6 @@ public class BuyerFrontWindow extends FrontWindow {
         clearButtonOperation();
         setSearchButtonConfig();
 
-        add(mainPanel);
-        setVisible(true);
     }
 
     private void setSearchBarPanel() {

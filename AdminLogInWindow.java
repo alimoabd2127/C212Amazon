@@ -20,6 +20,7 @@ public class AdminLogInWindow extends LogInWindow {
 
         setSignUpButton();
 
+        setLocationRelativeTo(null);
         setVisible(true);
 
     }

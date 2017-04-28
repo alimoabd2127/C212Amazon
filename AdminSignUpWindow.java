@@ -27,6 +27,7 @@ public class AdminSignUpWindow extends SignUpWindow {
             setSignUpButton();
         });
 
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 

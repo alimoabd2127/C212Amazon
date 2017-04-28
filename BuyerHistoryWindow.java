@@ -41,6 +41,7 @@ public class BuyerHistoryWindow extends FrontWindow{
         add(mainPanel);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 }

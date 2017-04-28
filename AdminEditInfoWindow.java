@@ -124,6 +124,7 @@ public class AdminEditInfoWindow extends EditInfoWindow {
         mainPanel.add(new JPanel(), BorderLayout.EAST);
         add(mainPanel);
 
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 

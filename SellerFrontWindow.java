@@ -62,7 +62,7 @@ public class SellerFrontWindow extends FrontWindow {
         setLogOffButton();
         setEditInfoButton();
 
-        add(mainPanel);
+        setLocationRelativeTo(null);
         setVisible(true);
 
         addItemButton.addActionListener(e -> setAddItemButton(seller.getUniqueID()));
