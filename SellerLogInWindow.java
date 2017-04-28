@@ -20,6 +20,8 @@ public class SellerLogInWindow extends LogInWindow{
 
       setSignUpButton();
 
+      setVisible(true);
+
     }
 
     /**

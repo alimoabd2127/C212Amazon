@@ -55,7 +55,6 @@ public abstract class LogInWindow extends JFrame {
 
         add(mainPanel);
 
-        setVisible(true);
 
     }
 

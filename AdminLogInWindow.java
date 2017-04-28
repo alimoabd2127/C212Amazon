@@ -20,6 +20,8 @@ public class AdminLogInWindow extends LogInWindow {
 
         setSignUpButton();
 
+        setVisible(true);
+
     }
 
     /**
