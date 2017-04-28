@@ -99,7 +99,7 @@ public class BuyerFrontWindow extends FrontWindow {
         buttonPanel.add(new JPanel());
 
         cartButton.addActionListener(e -> {
-            new CartWindow(buyer.getCart());
+            new CartWindow(buyer.getCart().getCart());
         });
 
         buttonPanel.add(new JPanel());
