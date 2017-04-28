@@ -5,17 +5,14 @@ import java.sql.*;
  * Created by alimo on 4/27/2017.
  */
 public class AdminDataWriter extends DataWriter {
-    // parameters
     private Connection conn = databaseConnector();
 
-
-    // methods
     /**
-     * Method to create a new buyer account.
-     * @param admin The Buyer object whose account is created.
+     * Method to create a new admin account.
+     * @param admin The Admin object whose account is created.
      */
     public boolean createBuyer(Admin admin) {
-        String sqlQuery = "INSERT INTO buyer (buyer.username, buyer.password, buyer.firstname, buyer.lastname, buyer.phone, buyer.email)" +
+        String sqlQuery = "INSERT INTO admin (admin.username, admin.password, admin.email)" +
                 "VALUES ('" + admin.getUserName() + "', '" + admin.getPassword() + "', "
                 + "'" + admin.getEmailAddress() + "');";
 
