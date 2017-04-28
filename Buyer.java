@@ -14,7 +14,7 @@ public class Buyer extends Account {
 
     // parameters
     private Market market;                  // market
-
+    private Cart cart;                      // Cart class
     private int totalCost = 0;              // Total cost of item selected.
     private int currentNumberOfItem = 0;    // Current number of items.
     private String firstName;               // User's first name.
@@ -25,6 +25,7 @@ public class Buyer extends Account {
     public Buyer(int uniqueID, String username, String password, String firstName, String lastName, String phone, String email) {
         super(uniqueID, username, password, email);
         this.firstName = firstName;         // first name
+        this.cart = new Cart();
         this.lastName = lastName;           // last name
         this.phone = phone;                 // phone
     }
@@ -56,5 +57,7 @@ public class Buyer extends Account {
     public String getPhone() {
         return phone;
     }
+
+    public Cart getCart() { return cart; }
 
 }

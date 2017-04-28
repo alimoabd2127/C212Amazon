@@ -12,11 +12,7 @@ public class Cart {
 
     private HashMap<Item, Integer> cart;    // Shopping cart.
 
-    public Cart (int CardID, int buyerID, int productID, int qty, Date date, int estimatedShipping) {
-
-
-
-
+    public Cart () {
 
 
     }
@@ -56,8 +52,8 @@ public class Cart {
 
 
     /**
-     * Method to get the buyer's cart
-     * @return This buyer's cart
+     * Method to get the cart
+     * @return This cart
      */
     public HashMap<Item, Integer> getCart() {
         return cart;
