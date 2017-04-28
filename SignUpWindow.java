@@ -11,11 +11,11 @@ import java.awt.*;
 public abstract class SignUpWindow extends JFrame {
 
     //All fields required for a sign up gui
-    protected final int FRANE_WIDTH = 800;
+    protected final int FRAME_WIDTH = 800;
     protected final int FRAME_HEIGHT = 500;
     protected JPanel mainPanel = new JPanel();
 
-    protected  JLabel headerLabel = new JLabel("Sign Up");
+    protected JLabel headerLabel = new JLabel("Sign Up");
 
     protected JLabel usernameLabel = new JLabel("Username: ");
     protected JTextField usernameTextField = new JTextField(20);
@@ -26,17 +26,20 @@ public abstract class SignUpWindow extends JFrame {
     protected JLabel confirmPasswordLabel = new JLabel("                Confirm Password: ");
     protected JPasswordField confirmedPasswordTextField = new JPasswordField(20);
 
+    protected JLabel emailAddressLabel = new JLabel("Email Address: ");
+    protected JTextField emailAddressTextField = new JTextField(20);
+
     protected JButton cancelButton = new JButton("Cancel");
     protected JButton signUpButton = new JButton("Sign up");
 
     public SignUpWindow(String signUpAccount) {
         super(signUpAccount);
-        setSize(FRANE_WIDTH, FRAME_HEIGHT);
+        setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setResizable(false);
         add(mainPanel);
         setLocationRelativeTo(null);
-        setVisible(true);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setCancelButton();
     }
 
     protected void setPanelSizeAndLayout() {
@@ -76,6 +79,12 @@ public abstract class SignUpWindow extends JFrame {
         bottomPanel.add(new JPanel());
         bottomPanel.add(new JPanel());
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    private void setCancelButton() {
+        cancelButton.addActionListener(e -> {
+            dispose();
+        });
     }
 
 }

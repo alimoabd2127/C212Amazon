@@ -35,7 +35,10 @@ public class SellerFrontWindow extends FrontWindow {
         mainPanel.setLayout(new BorderLayout());
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(2,1));
+        buttonPanel.setLayout(new GridLayout(4,1));
+
+        buttonPanel.add(new JPanel());
+        buttonPanel.add(logoffButton);
         buttonPanel.add(new JPanel());
         buttonPanel.add(editInfoButton);
 

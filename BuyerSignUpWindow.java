@@ -22,9 +22,6 @@ public class BuyerSignUpWindow extends SignUpWindow {
     private JLabel phoneLabel = new JLabel("Phone: ");
     private JTextField phoneTextField = new JTextField(20);
 
-    private JLabel emailAddressLabel = new JLabel("Email Address: ");
-    private JTextField emailAddressTextField = new JTextField(20);
-
     public BuyerSignUpWindow() {
 
         super("Buyer Sign Up");
@@ -38,7 +35,6 @@ public class BuyerSignUpWindow extends SignUpWindow {
         setBottomPanel();
 
         signUpButton.addActionListener(e -> setSignUpButton());
-        cancelButton.addActionListener(e -> dispose());
     }
 
 

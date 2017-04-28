@@ -8,9 +8,6 @@ import java.awt.*;
  */
 public class AdminSignUpWindow extends SignUpWindow {
 
-    private JLabel emailAddressLabel = new JLabel("Email Address: ");
-    private JTextField emailAddressTextField = new JTextField(20);
-    private String emailAddress = "";
 
     public AdminSignUpWindow() {
 

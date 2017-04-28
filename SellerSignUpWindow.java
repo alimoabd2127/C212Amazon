@@ -10,17 +10,14 @@ import java.awt.*;
  */
 public class SellerSignUpWindow extends SignUpWindow {
 
+    private SellerDataWriter sellerdatawriter = new SellerDataWriter();
+    private SellerDataReader sellerdatareader = new SellerDataReader();
+
     private JLabel nameLabel = new JLabel("Name: ");
     private JTextField nameTextField = new JTextField(20);
-    private String name= "";
 
     private JLabel phoneLabel = new JLabel("Phone: ");
     private JTextField phoneTextField = new JTextField(20);
-    private String phone = "";
-
-    private JLabel emailAddressLabel = new JLabel("Email Address: ");
-    private JTextField emailAddressTextField = new JTextField(20);
-    private String emailAddress = "";
 
     public SellerSignUpWindow() {
 
@@ -33,6 +30,10 @@ public class SellerSignUpWindow extends SignUpWindow {
         setRightPanel();
 
         setBottomPanel();
+
+        signUpButton.addActionListener(e -> setSignUpButton());
+
+        setVisible(true);
     }
 
 
@@ -103,6 +104,78 @@ public class SellerSignUpWindow extends SignUpWindow {
         rightPanel.add(new JPanel());
 
         mainPanel.add(rightPanel,BorderLayout.EAST);
+    }
+
+    private void setSignUpButton() {
+
+        JOptionPane jop = new JOptionPane();
+        int errors = 0;
+        String error = "";
+        boolean usernameExists = true;
+
+        if (sellerdatareader.verifyNewUsername("seller", usernameTextField.getText())) {
+
+            usernameExists = false;
+
+            if (usernameTextField.getText().length() < 4) {
+                errors++;
+                error += "Invalid username (4)\n";
+                usernameTextField.setText("");
+            }
+            if (passwordTextField.getText().length() < 8) {
+                errors++;
+                error += "Invalid password (8)\n";
+                passwordTextField.setText("");
+                confirmedPasswordTextField.setText("");
+            }
+            else if(!confirmedPasswordTextField.getText().equals(passwordTextField.getText())) {
+                errors++;
+                error += "Passwords don't match.\n";
+                passwordTextField.setText("");
+                confirmedPasswordTextField.setText("");
+            }
+            if (nameTextField.getText().length() < 3) {
+                errors++;
+                error += "Invalid name (3)\n";
+                nameTextField.setText("");
+            }
+            if (phoneTextField.getText().length() < 10) {
+                errors++;
+                error += "Invalid phone number (10)\n";
+                phoneTextField.setText("");
+            }
+            if (emailAddressTextField.getText().length() < 5) {
+                errors++;
+                error += "Invalid email address (5)\n";
+                emailAddressTextField.setText("");
+            }
+
+        }
+
+        if(usernameExists) {
+            errors++;
+            error += "Username already exists!\n";
+            usernameTextField.setText("");
+        }
+
+        if(errors == 0) {
+            if(!sellerdatawriter.createSeller(new Seller(0,usernameTextField.getText(), passwordTextField.getText(),
+                    nameTextField.getText(), phoneTextField.getText(),
+                    emailAddressTextField.getText()))) {
+                jop.showMessageDialog(null, "Error while creating user. Please try again.",
+                        "Writing Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                jop.showMessageDialog(null, "Seller created successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+            }
+
+        }
+
+        else {
+            jop.showMessageDialog(null, "Errors (" + errors + ")\n" + error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
     public static void main(String[] args) {
