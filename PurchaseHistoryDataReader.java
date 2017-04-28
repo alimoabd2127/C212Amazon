@@ -13,16 +13,16 @@ public class PurchaseHistoryDataReader extends DataReader {
         try {
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
-            conn.close();
 
             if (!rs.next()) {
                 System.out.println("Value");
             }
             cartid = rs.getInt(1) + 1;
-
+            conn.close();
+            return cartid;
         } catch (Exception e) {
             System.err.println(e.getMessage());
+            return cartid;
         }
-        return cartid;
     }
 }

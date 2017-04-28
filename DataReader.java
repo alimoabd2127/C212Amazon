@@ -57,12 +57,13 @@ public class DataReader {
         try {
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
-            conn.close();
 
             if(!rs.next()){
+                conn.close();
                 return true;
             }
             else{
+                conn.close();
                 return false;
             }
         } catch (Exception e) {
@@ -82,15 +83,17 @@ public class DataReader {
         try {
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
-            conn.close();
 
             if (!rs.next()) {
+                conn.close();
                 return false;
             }
             String tempPass = rs.getString("password");
             if (tempPass.equals(password)) {
+                conn.close();
                 return true;
             } else {
+                conn.close();
                 return false;
             }
         } catch (Exception e) {
