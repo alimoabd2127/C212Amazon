@@ -13,8 +13,8 @@ public class DataReader {
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/amazon", "root", "password");
-            //connection = DriverManager.getConnection("jdbc:mysql://db.soic.indiana.edu/c212s17_aalimov", "c212s17_aalimov", "Guu37gu6");
+            //connection = DriverManager.getConnection("jdbc:mysql://localhost/amazon", "root", "password");
+            connection = DriverManager.getConnection("jdbc:mysql://db.soic.indiana.edu/c212s17_aalimov", "c212s17_aalimov", "Guu37gu6");
         } catch (Exception e) {
             e.printStackTrace();
         }
