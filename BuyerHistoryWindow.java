@@ -12,19 +12,19 @@ public class BuyerHistoryWindow extends FrontWindow{
     private PurchaseHistoryDataReader historyReader = new PurchaseHistoryDataReader();
 
     private JPanel historyPanel = new JPanel();
-    private JList historyList = new JList();
+    private JList<String> historyList = new JList<>();
 
     public BuyerHistoryWindow(int buyerID){
 
         super("History");
 
-        ArrayList<String> history = null;
+        //ArrayList<String> history = null //historyReader.getsomething(buyer id);
 
         DefaultListModel<String> historyStrings = new DefaultListModel<>();
 
-//        for(String record: history) {
-  //          historyStrings.addElement(record);
-    //    }
+      //  for(String record: history) {
+        //    historyStrings.addElement(record);
+        //}
 
         historyList.setModel(historyStrings);
 

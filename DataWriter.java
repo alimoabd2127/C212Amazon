@@ -22,12 +22,27 @@ public class DataWriter {
     }
 
     public void setDb(String table, String column, int id, String input){
-        String sqlQuery = "UPDATE " + table + " SET " + table + "." + column + " COLLATE utf8mb4_bin = '" + input + "'" +
-                "WHERE " + table + ".id = " + id + ";";
-
+        String sqlQuery = "UPDATE " + table + " SET " + table + "." + column + " = " + input +
+                " WHERE " + table + ".id = " + id;
         try{
             Connection conn = databaseConnector();
             Statement query = conn.createStatement();
+            System.out.println(sqlQuery);
+            query.executeUpdate(sqlQuery);
+            conn.close();
+        }
+        catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void setDb(String table, String column, int id, int input){
+        String sqlQuery = "UPDATE " + table + " SET " + table + "." + column + " = " + input +
+                " WHERE " + table + ".id = " + id;
+        try{
+            Connection conn = databaseConnector();
+            Statement query = conn.createStatement();
+            System.out.println(sqlQuery);
             query.executeUpdate(sqlQuery);
             conn.close();
         }

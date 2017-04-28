@@ -15,7 +15,6 @@ public class ItemDataReader extends DataReader {
             Connection conn = databaseConnector();
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
-            conn.close();
 
             int id = 0, quantity = 0, sellerid = 0;
             String prodname = "", description = "", category = "";
@@ -33,7 +32,7 @@ public class ItemDataReader extends DataReader {
                 Item item = new Item(id, prodname, description, category, price, quantity, sellerid);
                 output.add(item);
             }
-
+            conn.close();
             return output;
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -68,4 +67,9 @@ public class ItemDataReader extends DataReader {
             return null;
         }
     }
+//
+//    public static void main(String[] args) {
+//        ItemDataReader idr = new ItemDataReader();
+//        System.out.println(idr.searchItems("inventory", "").toString());
+//    }
 }

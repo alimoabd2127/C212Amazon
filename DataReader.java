@@ -35,10 +35,9 @@ public class DataReader {
             Connection conn = databaseConnector();
             Statement query = conn.createStatement();
             rs = query.executeQuery(sqlQuery);
-            conn.close();
-
             rs.next();
             output = rs.getString(column);
+            conn.close();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

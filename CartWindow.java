@@ -18,6 +18,7 @@ public class CartWindow extends FrontWindow{
 
 
     private Cart currentCart;
+    private Set<Item> itemSet;
     private JLabel cartHeader = new JLabel("Cart");
     private JList<String> cartList = new JList<>();
     private JButton cancelButton = new JButton("Cancel");
@@ -31,6 +32,7 @@ public class CartWindow extends FrontWindow{
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         currentCart = cart;
+        itemSet = currentCart.getCart().keySet();
         cartHeader.setHorizontalAlignment(JLabel.CENTER);
         cartHeader.setFont(new Font(Font.SERIF, 0, 70));
 //        cartList.setListData(getCartList());
@@ -65,6 +67,13 @@ public class CartWindow extends FrontWindow{
         mainPanel.add(new JPanel(), BorderLayout.WEST);
         mainPanel.add(new JPanel(), BorderLayout.EAST);
 
+
+        initializeCartList();
+
+        setCancelButton();
+        setRemoveButton();
+        setConfirmButton();
+
         setLocationRelativeTo(null);
         setVisible(true);
 
@@ -86,6 +95,89 @@ public class CartWindow extends FrontWindow{
         }
 
         return cartList;
+
+    }
+
+    private void setCancelButton() {
+        cancelButton.addActionListener(e -> {
+            dispose();
+        });
+    }
+
+    private void setRemoveButton() {
+        removeButton.addActionListener(e -> {
+            int selectedIndex = cartList.getSelectedIndex();
+
+            if(selectedIndex == -1) {
+            }
+            else{
+                String selectedItemString = cartList.getSelectedValue();
+                Item actualSelectedItem = null;
+
+                for(Item item: itemSet) {
+                    String itemString = item.toString();
+                    Integer itemCount = currentCart.getCart().get(item);
+                    String itemCountString = itemCount == null? "0": itemCount+"";
+                    if(("(" + itemCountString + ")" + "   " + item.toString()).equals(selectedItemString)) {
+                        actualSelectedItem = item;
+                    }
+                }
+                System.out.println(actualSelectedItem);
+                itemSet.remove(actualSelectedItem);
+                currentCart.getCart().remove(actualSelectedItem);
+                initializeCartList();
+                refreshList();
+            }
+        });
+    }
+
+    private void refreshList() {
+        DefaultListModel<String> currentList = (DefaultListModel)(cartList.getModel());
+
+        if(currentList == null) {}
+        else{
+            for(int i = 0; i < currentList.size(); i++) {
+                cartList.ensureIndexIsVisible(i);
+            }
+        }
+    }
+
+    private void initializeCartList() {
+        itemSet = currentCart.getCart().keySet();
+
+        if(itemSet.size() == 0) {
+            cartList.setModel(new DefaultListModel<String>());
+        }
+        else {
+            DefaultListModel<String> cartStringList = new DefaultListModel<>();
+
+            for(Item item: itemSet) {
+                Integer count = currentCart.getCart().get(item);
+                String countString = count == null? 0 + "": count + "";
+                cartStringList.addElement("(" + countString + ")" + "   " + item.toString());
+            }
+
+            cartList.setModel(cartStringList);
+
+            for(int i = 0; i < cartStringList.size(); i++) {
+                cartList.ensureIndexIsVisible(i);
+            }
+        }
+    }
+
+    private void setConfirmButton() {
+        confirmButton.addActionListener(e -> {
+            JOptionPane jop = new JOptionPane();
+
+            if(!currentCart.checkout()) {
+                jop.showMessageDialog(null, "Cart is empty!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                jop.showMessageDialog(null, "All items bought successfully", "Purchase Complete", JOptionPane.INFORMATION_MESSAGE);
+                initializeCartList();
+                dispose();
+            }
+        });
 
     }
 

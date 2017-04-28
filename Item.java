@@ -69,6 +69,6 @@ public class Item {
     }
 
     public String toString() {
-        return prodName + " " + description + " " + category + " " + price;
+        return prodName + "    " + description + "    " + category + "     $" + price;
     }
 }

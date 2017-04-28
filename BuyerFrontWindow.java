@@ -88,6 +88,7 @@ public class BuyerFrontWindow extends FrontWindow {
 
         clearButtonOperation();
         setSearchButtonConfig();
+        setAddToCartButton();
 
     }
 
@@ -179,33 +180,38 @@ public class BuyerFrontWindow extends FrontWindow {
 
         clearListButton.addActionListener(e -> searchedItemList.setModel(new DefaultListModel<>()));
         searchedItemList.ensureIndexIsVisible(0);
+        searchedItemArrayList.clear();
     }
 
     private void setSearchButtonConfig() {
         searchButton.addActionListener(e -> {
-//            if((searchedItemArrayList = itemdatareader.searchItems("inventory", searchBar.getText())).size() == 0) {
-//                searchedItemList.setModel(new DefaultListModel<>());
-//                }
-//            else {
-            DefaultListModel<String> itemStrings = new DefaultListModel<>();
-//                for(Item item: searchedItemArrayList) {
-//                    itemStrings.addElement(item.toString());
-//                }
-            itemStrings.addElement("TEST");
-            itemStrings.addElement("TEST");
-            itemStrings.addElement("TEST");
-            itemStrings.addElement("TEST");
-            itemStrings.addElement("TEST");
-            itemStrings.addElement("TEST");
-            itemStrings.addElement("TEST");
-            itemStrings.addElement("TEST");
-            searchedItemList.setModel(itemStrings);
-            for(int i = 0; i < itemStrings.size(); i++) {
-                searchedItemList.ensureIndexIsVisible(i);
-                System.out.println("S");
+            if ((searchedItemArrayList = itemdatareader.searchItems("inventory", searchBar.getText())).size() == 0) {
+                searchedItemList.setModel(new DefaultListModel<>());
+                searchedItemList.ensureIndexIsVisible(0);
+            } else {
+                DefaultListModel<String> itemStrings = new DefaultListModel<>();
+                for (Item item : searchedItemArrayList) {
+                    itemStrings.addElement(item.toString());
+                }
+                searchedItemList.setModel(itemStrings);
+                for (int i = 0; i < itemStrings.size(); i++) {
+                    searchedItemList.ensureIndexIsVisible(i);
+                }
             }
-//            }
-//        }
+        });
+    }
+
+    private void setAddToCartButton() {
+        addToCartButton.addActionListener(e -> {
+            int selectedIndex = searchedItemList.getSelectedIndex();
+
+            if(selectedIndex == -1){
+            }
+            else if(searchedItemList.getModel() == null){
+            }
+            else {
+                buyer.getCart().addToCart(searchedItemArrayList.get(searchedItemList.getSelectedIndex()));
+            }
         });
     }
 
