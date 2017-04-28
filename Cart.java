@@ -1,7 +1,21 @@
+/**
+ * Cart
+ * Cart represents a buyers cart
+ */
+
 package C212Amazon;
 
-/**
- * Created by n on 4/27/17.
- */
 public class Cart {
+
+
 }
+
+
+
+
+// how to iterate over a hash-map
+for (Map.Item<Item, Int> items : map.entrySet()) {
+        Int qty = items.getKey();
+        Item item = items.getItem();
+}
+
