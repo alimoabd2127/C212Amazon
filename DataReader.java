@@ -29,120 +29,15 @@ public class DataReader {
      * @param id A string with the unique id of the buyer
      * @return returns a string of the username of the buyer
      */
-    public String getUsername(String table, int id) {
-        String sqlQuery = "SELECT username FROM " + table + " WHERE " + table + ".id = '" + id + "';";
+    public String getDb(String table, String column, int id) {
+        String sqlQuery = "SELECT " + column + " FROM " + table + " WHERE " + table + ".id = '" + id + "';";
         ResultSet rs = null;
         String output = "";
         try {
             Statement query = conn.createStatement();
             rs = query.executeQuery(sqlQuery);
             rs.next();
-            output = rs.getString("username");
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        return output;
-    }
-
-    /**
-     * Method to get the password for that specific buyer
-     *
-     * @param id A string with the unique id of the buyer
-     * @return returns a string of the password of the buyer
-     */
-    public String getPassword(String table, int id) {
-        String sqlQuery = "SELECT password FROM " + table + " WHERE " + table + ".id = '" + id + "';";
-        ResultSet rs = null;
-        String output = "";
-        try {
-            Statement query = conn.createStatement();
-            rs = query.executeQuery(sqlQuery);
-            rs.next();
-            output = rs.getString("password");
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        return output;
-    }
-
-    /**
-     * Method to get the first name for that specific buyer
-     *
-     * @param id A string with the unique id of the buyer
-     * @return returns a string of the first name of the buyer
-     */
-    public String getFirstName(String table, int id) {
-        String sqlQuery = "SELECT firstname FROM " + table + " WHERE " + table + ".id = '" + id + "';";
-        ResultSet rs = null;
-        String output = "";
-        try {
-            Statement query = conn.createStatement();
-            rs = query.executeQuery(sqlQuery);
-            rs.next();
-            output = rs.getString("firstname");
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        return output;
-    }
-
-    /**
-     * Method to get the last name for that specific buyer
-     *
-     * @param id A string with the unique id of the buyer
-     * @return returns a string of the last name of the buyer
-     */
-    public String getLastName(String table, int id) {
-        String sqlQuery = "SELECT lastname FROM " + table + " WHERE " + table + ".id = '" + id + "';";
-        ResultSet rs = null;
-        String output = "";
-        try {
-            Statement query = conn.createStatement();
-            rs = query.executeQuery(sqlQuery);
-            rs.next();
-            output = rs.getString("lastname");
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        return output;
-    }
-
-    /**
-     * Method to get the contact information for that specific buyer
-     *
-     * @param id A string with the unique id of the buyer
-     * @return returns a string of the contact information of the buyer
-     */
-    public String getPhone(String table, int id) {
-        String sqlQuery = "SELECT phone FROM " + table + " WHERE " + table + ".id = '" + id + "';";
-        ResultSet rs = null;
-        String output = "";
-        try {
-            Statement query = conn.createStatement();
-            rs = query.executeQuery(sqlQuery);
-            rs.next();
-            output = rs.getString("phone");
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        return output;
-    }
-
-    /**
-     * Method to get the email for that specific buyer
-     *
-     * @param id A string with the unique id of the buyer
-     * @return returns a string of the email of the buyer
-     */
-    public String getEmail(String table, int id) {
-        String sqlQuery = "SELECT email FROM " + table + " WHERE " + table + ".id = '" + id + "';";
-        ResultSet rs = null;
-        String output = "";
-        try {
-            Statement query = conn.createStatement();
-            rs = query.executeQuery(sqlQuery);
-            rs.next();
-            output = rs.getString("email");
+            output = rs.getString(column);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

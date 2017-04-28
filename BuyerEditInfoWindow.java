@@ -70,7 +70,7 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
                 ,"Error",JOptionPane.ERROR_MESSAGE);
             }
             else {
-                buyerdatawriter.setFirstName("buyer", buyer.getUniqueID(),firstn);
+                buyerdatawriter.setDb("buyer", "firstname", buyer.getUniqueID(),firstn);
                 jop.showMessageDialog(null, "First name changed to " + firstn + " successfully."
                 , "Success", JOptionPane.INFORMATION_MESSAGE);
                 actualFirstNameLabel.setText(firstn);
@@ -90,7 +90,7 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
                 ,"Error",JOptionPane.ERROR_MESSAGE);
             }
             else {
-                buyerdatawriter.setLastName("buyer", buyer.getUniqueID(), lastn);
+                buyerdatawriter.setDb("buyer", "lastname", buyer.getUniqueID(), lastn);
                 jop.showMessageDialog(null, "Last name changed to " + lastn + " successfully."
                 , "Success", JOptionPane.INFORMATION_MESSAGE);
                 actualLastNameLabel.setText(lastn);
@@ -114,7 +114,7 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
                         JOptionPane.ERROR_MESSAGE);
             }
             else {
-                buyerdatawriter.setUserName("buyer", buyer.getUniqueID(), usern);
+                buyerdatawriter.setDb("buyer", "username", buyer.getUniqueID(), usern);
                 jop.showMessageDialog(null, "Username changed to " + usern + " successfully."
                 , "Success", JOptionPane.INFORMATION_MESSAGE);
                 actualUsernameLabel.setText(usern);
@@ -138,7 +138,7 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
                         JOptionPane.ERROR_MESSAGE);
             }
             else {
-                buyerdatawriter.setPassword("buyer", buyer.getUniqueID(), password);
+                buyerdatawriter.setDb("buyer", "password", buyer.getUniqueID(), password);
                 jop.showMessageDialog(null, "Password changed successfully."
                 , "Success", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -157,7 +157,7 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
                 ,"Error",JOptionPane.ERROR_MESSAGE);
             }
             else {
-                buyerdatawriter.setPhone("buyer", buyer.getUniqueID(), newphone);
+                buyerdatawriter.setDb("buyer", "phone", buyer.getUniqueID(), newphone);
                 jop.showMessageDialog(null, "Phone number changed to " + newphone + " successfully."
                 , "Success", JOptionPane.INFORMATION_MESSAGE);
                 actualPhoneLabel.setText(newphone);
@@ -177,7 +177,7 @@ public class BuyerEditInfoWindow extends EditInfoWindow {
                 ,"Error",JOptionPane.ERROR_MESSAGE);
             }
             else {
-                buyerdatawriter.setEmail("buyer", buyer.getUniqueID(), emailn);
+                buyerdatawriter.setDb("buyer", "email", buyer.getUniqueID(), emailn);
                 jop.showMessageDialog(null, "Email address changed to " + emailn + " successfully."
                 , "Success", JOptionPane.INFORMATION_MESSAGE);
                 actualEmailLabel.setText(emailn);

@@ -9,14 +9,20 @@ public class Item {
 
     private int productID;
     private String prodName;
-    private float price;
+    private String description;
+    private String category;
+    private double price;
+    private int quantity;
     private int sellerID;
 
-    public Item(int productID, String prodName, float price, int sellerID) {
+    public Item(int productID, String prodName, String description, String category, double price, int quantity, int sellerID) {
 
         this.productID = productID;
         this.prodName = prodName;
+        this.description = description;
+        this.category = category;
         this.price = price;
+        this.quantity = quantity;
         this.sellerID = sellerID;
     }
 
@@ -28,7 +34,7 @@ public class Item {
         return prodName;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -36,4 +42,15 @@ public class Item {
         return sellerID;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }
