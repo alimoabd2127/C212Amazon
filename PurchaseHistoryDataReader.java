@@ -5,9 +5,8 @@ import java.sql.*;
  */
 public class PurchaseHistoryDataReader extends DataReader {
 
-    private Connection conn = databaseConnector();
-
     public int getCartId() {
+        Connection conn = databaseConnector();
         String sqlQuery = "SELECT MAX(cartid) FROM purchasehistory;";
         int cartid = -1;
         try {
