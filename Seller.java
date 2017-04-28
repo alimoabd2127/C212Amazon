@@ -35,4 +35,9 @@ public class Seller extends Account {
     public String getPhone() {
         return phone;
     }
+
+    public String toString() {
+        return getUserName() + "    " + name + "    " + getUniqueID()
+                + "    " + getEmailAddress() + "    " + phone;
+    }
 }

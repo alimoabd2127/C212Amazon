@@ -71,4 +71,8 @@ public class Item {
     public String toString() {
         return prodName + "    " + description + "    " + category + "     $" + price;
     }
+
+    public String toString2() {
+        return prodName + "     $" + price;
+    }
 }

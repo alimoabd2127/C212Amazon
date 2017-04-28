@@ -27,6 +27,7 @@ public class SellerFrontWindow extends FrontWindow {
 
     private JPanel historyPanel = new JPanel();
     private JList historyList = new JList();
+    private JButton refreshHistoryButton = new JButton("Refresh");
 
     public SellerFrontWindow(Seller seller) {
 
@@ -71,11 +72,28 @@ public class SellerFrontWindow extends FrontWindow {
     private void setUpHistoryJList() {
 
         historyPanel.setLayout(new BorderLayout());
+
+        JPanel historyButtonPanel = new JPanel();
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(refreshHistoryButton);
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+
         historyPanel.add(new JScrollPane(historyList), BorderLayout.CENTER);
         historyPanel.add(new JPanel(), BorderLayout.NORTH);
         historyPanel.add(new JPanel(), BorderLayout.SOUTH);
         historyPanel.add(new JPanel(), BorderLayout.WEST);
-        historyPanel.add(new JPanel(), BorderLayout.EAST);
+        historyPanel.add(historyButtonPanel, BorderLayout.EAST);
 
         ArrayList<String> history = null;
 
@@ -155,6 +173,30 @@ public class SellerFrontWindow extends FrontWindow {
 
     private void setAddItemButton(int sellerID) {
         new NewItemWindow(sellerID);
+    }
+
+    private void setUpHistoryPanel() {
+
+        ArrayList<String> history = null; //historyReader.getsomething(seller id);
+
+        DefaultListModel<String> historyStrings = new DefaultListModel<>();
+
+        if(history.size() == 0) {
+            historyStrings.addElement("No History Found!");
+        }
+
+        else {
+
+            for (String record : history) {
+                historyStrings.addElement(record);
+            }
+
+            historyList.setModel(historyStrings);
+
+            for (int i = 0; i < historyStrings.size(); i++) {
+                historyList.ensureIndexIsVisible(i);
+            }
+        }
     }
 
     public static void main(String[] args) {

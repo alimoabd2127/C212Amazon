@@ -18,19 +18,27 @@ public class BuyerHistoryWindow extends FrontWindow{
 
         super("History");
 
-        //ArrayList<String> history = null //historyReader.getsomething(buyer id);
+        ArrayList<String> history = null; //historyReader.getsomething(buyer id);
 
         DefaultListModel<String> historyStrings = new DefaultListModel<>();
 
-      //  for(String record: history) {
-        //    historyStrings.addElement(record);
-        //}
-
-        historyList.setModel(historyStrings);
-
-        for(int i = 0; i < historyStrings.size(); i++) {
-            historyList.ensureIndexIsVisible(i);
+        if(history.size() == 0) {
+            historyStrings.addElement("No History Found!");
         }
+
+        else {
+
+            for (String record : history) {
+                historyStrings.addElement(record);
+            }
+
+            historyList.setModel(historyStrings);
+
+            for (int i = 0; i < historyStrings.size(); i++) {
+                historyList.ensureIndexIsVisible(i);
+            }
+        }
+
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(new JPanel(), BorderLayout.NORTH);
         mainPanel.add(new JPanel(), BorderLayout.SOUTH);

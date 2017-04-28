@@ -56,4 +56,9 @@ public class Buyer extends Account {
 
     public Cart getCart() { return cart; }
 
+    public String toString() {
+        return getUserName() + "    " + firstName + "    " + lastName + "    " + getUniqueID()
+                + "    " + getEmailAddress() + "    " + phone;
+    }
+
 }
