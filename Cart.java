@@ -6,48 +6,51 @@
 package C212Amazon;
 
 import java.util.HashMap;
-import java.util.Set;
 import java.util.Date;
 
 public class Cart {
 
     private HashMap<Item, Integer> cart;    // Shopping cart.
-    private PurchaseHistoryDataWriter purchaseHistoryWriter = new PurchaseHistoryDataWriter();
+    private int buyerID;
 
-    public Cart (){
+    public Cart (int buyerID) {
+        this.buyerID = buyerID;
+
     }
+
 
     /**
      * adds a product to the cart
      * @param item An Item object
      */
     public void addToCart(Item item) {
-
-        if(cart.get(item) == null) {
-            cart.put(item, 1);
-        }
-        else {
-            cart.put(item, cart.get(item) + 1);
-        }
+        cart.put(item);
     }
+
+
 
     public void checkout() {
         // 1. get unique cartID
-            // call the reader to get the latest value and + 1
-
-        Set<Item> keys = cart.keySet();
-
+        // call the reader to get the latest value and + 1
+        PurchaseHistoryDataReader phdr = new PurchaseHistoryDataReader();
+        int cartID = phdr.getCartId();
         // 2. iterate over every item in cart
-        for (Item item : keys) {
+        for (Item item : Keys) {
 
-            // 3. get item parameters
-            int qty = cart.get(item);
-            cart.remove(item);
+            // 3. get parameters from item
+            int productID = item.getProductID();
+            int qty = cart.getKey();
 
-            // 4.
-            //purchaseHistoryWriter
+
+            // 4. write the current data in the cart to the database
+            purchaseHistoryWriter(cartID, buyerID, productID, qty);
         }
+
+        // 5. clear the cart
+        cart.clear();
+
     }
+
 
     /**
      * Method to get the cart
@@ -56,6 +59,7 @@ public class Cart {
     public HashMap<Item, Integer> getCart() {
         return cart;
     }
+
 
 }
 
