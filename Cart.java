@@ -12,7 +12,7 @@ import java.util.Date;
 public class Cart {
     private int buyerID;
     private HashMap<Item, Integer> cart;    // Shopping cart.
-    private PurchaseHistoryDataWriter purchaseHistoryWriter = new PurchaseHistoryDataWriter();
+    private PurchaseHistoryDataWriter purchaseHistoryDataWriter = new PurchaseHistoryDataWriter();
     private PurchaseHistoryDataReader purchaseHistoryDataReader = new PurchaseHistoryDataReader();
 
     public Cart (int buyerID){
@@ -43,12 +43,12 @@ public class Cart {
         for (Item item : keys) {
 
             // 3. get item parameters
-            int qty = cart.keySet();
+            int qty = cart.get(item);
             int productID = item.getProductID();
             cart.remove(item);
 
-            // 4.
-            purchaseHistoryWriter(cartID, buyerID, productID, qty);
+            // 4. write cart to purchaseHistory database
+            purchaseHistoryDataWriter.createPurchaseHistory(cartID, buyerID, productID, qty);
         }
     }
 
