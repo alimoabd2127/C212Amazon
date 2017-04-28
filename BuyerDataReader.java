@@ -17,6 +17,7 @@ public class BuyerDataReader extends DataReader {
         try {
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
+            conn.close();
 
             int id = 0;
             String uname = "", pass = "", first = "", last = "", phone = "", email = "";

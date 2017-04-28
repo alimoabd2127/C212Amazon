@@ -24,10 +24,10 @@ public class PurchaseHistoryDataWriter extends DataWriter{
                 + "'" + productId + "', '" + quantity + "', CURDATE(), '"
                 + (rand.nextInt(4) + 2) + "');";
 
-        System.out.println(sqlQuery);
         try{
             Statement query = conn.createStatement();
             query.executeUpdate(sqlQuery);
+            conn.close();
         }
         catch (Exception e){
             System.err.println(e.getMessage());

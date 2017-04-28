@@ -30,6 +30,7 @@ public class DataWriter {
         try{
             Statement query = conn.createStatement();
             query.executeUpdate(sqlQuery);
+            conn.close();
         }
         catch (Exception e){
             System.err.println(e.getMessage());

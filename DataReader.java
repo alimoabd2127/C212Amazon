@@ -36,6 +36,8 @@ public class DataReader {
         try {
             Statement query = conn.createStatement();
             rs = query.executeQuery(sqlQuery);
+            conn.close();
+
             rs.next();
             output = rs.getString(column);
         } catch (Exception e) {
@@ -55,6 +57,8 @@ public class DataReader {
         try {
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
+            conn.close();
+
             if(!rs.next()){
                 return true;
             }
@@ -78,6 +82,7 @@ public class DataReader {
         try {
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
+            conn.close();
 
             if (!rs.next()) {
                 return false;

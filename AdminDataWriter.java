@@ -5,6 +5,7 @@ import java.sql.*;
  * Created by alimo on 4/27/2017.
  */
 public class AdminDataWriter extends DataWriter {
+
     private Connection conn = databaseConnector();
 
     /**
@@ -19,6 +20,7 @@ public class AdminDataWriter extends DataWriter {
         try{
             Statement query = conn.createStatement();
             query.executeUpdate(sqlQuery);
+            conn.close();
         }
         catch (Exception e){
             System.err.println(e.getMessage());

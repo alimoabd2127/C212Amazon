@@ -16,6 +16,7 @@ public class ItemDataReader extends DataReader {
         try {
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
+            conn.close();
 
             int id = 0, quantity = 0, sellerid = 0;
             String prodname = "", description = "", category = "";
@@ -52,6 +53,8 @@ public class ItemDataReader extends DataReader {
         try {
             Statement query = conn.createStatement();
             rs = query.executeQuery(sqlQuery);
+            conn.close();
+
             rs.next();
             prodname = rs.getString("productname");
             description = rs.getString("description");
