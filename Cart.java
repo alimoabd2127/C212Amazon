@@ -10,11 +10,13 @@ import java.util.Set;
 import java.util.Date;
 
 public class Cart {
-
+    private int buyerID;
     private HashMap<Item, Integer> cart;    // Shopping cart.
     private PurchaseHistoryDataWriter purchaseHistoryWriter = new PurchaseHistoryDataWriter();
+    private PurchaseHistoryDataReader purchaseHistoryDataReader = new PurchaseHistoryDataReader();
 
-    public Cart (){
+    public Cart (int buyerID){
+        this.buyerID = buyerID;
     }
 
     /**
@@ -34,18 +36,19 @@ public class Cart {
     public void checkout() {
         // 1. get unique cartID
             // call the reader to get the latest value and + 1
-
+        int cartID = purchaseHistoryDataReader.getCartId();
         Set<Item> keys = cart.keySet();
 
         // 2. iterate over every item in cart
         for (Item item : keys) {
 
             // 3. get item parameters
-            int qty = cart.get(item);
+            int qty = cart.keySet();
+            int productID = item.getProductID();
             cart.remove(item);
 
             // 4.
-            //purchaseHistoryWriter
+            purchaseHistoryWriter(cartID, buyerID, productID, qty);
         }
     }
 
