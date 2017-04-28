@@ -14,7 +14,6 @@ public class AdminDataReader extends DataReader {
         try {
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
-            conn.close();
 
             int id = 0;
             String uname = "", pass = "", first = "", last = "", email = "";
@@ -26,7 +25,7 @@ public class AdminDataReader extends DataReader {
             uname = rs.getString("username");
             pass = rs.getString("password");
             email = rs.getString("email");
-
+            conn.close();
             return new Admin(id, uname, pass, email);
         } catch (Exception e) {
             System.err.println(e.getMessage());

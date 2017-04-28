@@ -17,7 +17,6 @@ public class BuyerDataReader extends DataReader {
         try {
             Statement query = conn.createStatement();
             ResultSet rs = query.executeQuery(sqlQuery);
-            conn.close();
 
             int id = 0;
             String uname = "", pass = "", first = "", last = "", phone = "", email = "";
@@ -32,7 +31,7 @@ public class BuyerDataReader extends DataReader {
             last = rs.getString("lastname");
             phone = rs.getString("phone");
             email = rs.getString("email");
-
+            conn.close();
             return new Buyer(id, uname, pass, first, last, phone, email);
         } catch (Exception e) {
             System.err.println(e.getMessage());

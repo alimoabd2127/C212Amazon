@@ -53,7 +53,6 @@ public class ItemDataReader extends DataReader {
         try {
             Statement query = conn.createStatement();
             rs = query.executeQuery(sqlQuery);
-            conn.close();
 
             rs.next();
             prodname = rs.getString("productname");
@@ -62,7 +61,7 @@ public class ItemDataReader extends DataReader {
             price = rs.getDouble("price");
             quantity = rs.getInt("quantity");
             sellerid = rs.getInt("sellerid");
-
+            conn.close();
             return new Item(id, prodname, description, category, price, quantity, sellerid);
         } catch (Exception e) {
             System.err.println(e.getMessage());
