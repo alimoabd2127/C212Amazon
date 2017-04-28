@@ -24,9 +24,9 @@ public class EditInfoWindow extends JFrame {
     protected JButton emailButton = new JButton("Edit");
 
     public EditInfoWindow() {
-        setLocationRelativeTo(null);
         setResizable(false);
         setSize(FRAME_WIDTH,FRAME_HEIGHT);
+        setLocationRelativeTo(null);
     }
 
 

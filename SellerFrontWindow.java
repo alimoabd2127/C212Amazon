@@ -2,6 +2,7 @@ package C212Amazon;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Interface for a seller.
@@ -18,6 +19,7 @@ public class SellerFrontWindow extends FrontWindow {
     private JButton editInfoButton = new JButton("Edit Info");
 
     private JPanel inventoryPanel = new JPanel();
+    private ArrayList<Item> itemArrayList = new ArrayList<>();
     private JList<String> itemList = new JList<>();
     private JButton addItemButton = new JButton("Add Item");
     private JButton editItemButton = new JButton("Edit Item");
@@ -51,26 +53,22 @@ public class SellerFrontWindow extends FrontWindow {
         centerPanel.addTab("Inventory",null,inventoryPanel,"View inventory");
         centerPanel.addTab("History",null,historyPanel,"View history");
 
-        inventoryPanel.setLayout(new BorderLayout());
+        setUpHistoryJList();
+        setUpInventoryJList();
 
-        JPanel inventoryButtonPanel = new JPanel();
-        inventoryButtonPanel.setLayout(new GridLayout(9,2));
-        inventoryButtonPanel.add(new JPanel());
-        inventoryButtonPanel.add(addItemButton);
-        inventoryButtonPanel.add(new JPanel());
-        inventoryButtonPanel.add(new JPanel());
-        inventoryButtonPanel.add(editItemButton);
-        inventoryButtonPanel.add(new JPanel());
-        inventoryButtonPanel.add(new JPanel());
-        inventoryButtonPanel.add(deleteItemButton);
-        inventoryButtonPanel.add(new JPanel());
 
-        inventoryPanel.add(new JPanel(), BorderLayout.NORTH);
-        inventoryPanel.add(new JScrollPane(itemList),BorderLayout.CENTER);
-        inventoryPanel.add(new JPanel(), BorderLayout.WEST);
-        inventoryPanel.add(new JPanel(), BorderLayout.EAST);
-        inventoryPanel.add(new JPanel(), BorderLayout.SOUTH);
-        inventoryPanel.add(inventoryButtonPanel, BorderLayout.EAST);
+        mainPanel.add(centerPanel, BorderLayout.CENTER);
+
+        setLogOffButton();
+        setEditInfoButton();
+
+        add(mainPanel);
+        setVisible(true);
+
+        addItemButton.addActionListener(e -> setAddItemButton(seller.getUniqueID()));
+    }
+
+    private void setUpHistoryJList() {
 
         historyPanel.setLayout(new BorderLayout());
         historyPanel.add(new JScrollPane(historyList), BorderLayout.CENTER);
@@ -79,14 +77,88 @@ public class SellerFrontWindow extends FrontWindow {
         historyPanel.add(new JPanel(), BorderLayout.WEST);
         historyPanel.add(new JPanel(), BorderLayout.EAST);
 
+        ArrayList<String> history = null;
 
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
+        DefaultListModel<String> historyStrings = new DefaultListModel<>();
 
-        mainPanel.add(new JPanel(), BorderLayout.SOUTH);
+//        for(String record: history) {
+  //          historyStrings.addElement(record);
+    //    }
 
-        add(mainPanel);
-        setVisible(true);
+        historyList.setModel(historyStrings);
+
+        for(int i = 0; i < historyStrings.size(); i++) {
+            historyList.ensureIndexIsVisible(i);
+        }
+
+
     }
 
+    private void setUpInventoryJList() {
+
+        inventoryPanel.setLayout(new BorderLayout());
+
+        JPanel inventoryButtonPanel = new JPanel();
+        inventoryButtonPanel.setLayout(new GridLayout(8,2));
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(addItemButton);
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(editItemButton);
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(deleteItemButton);
+
+        inventoryPanel.add(new JPanel(), BorderLayout.NORTH);
+        inventoryPanel.add(new JScrollPane(itemList),BorderLayout.CENTER);
+        inventoryPanel.add(new JPanel(), BorderLayout.WEST);
+        inventoryPanel.add(new JPanel(), BorderLayout.EAST);
+        inventoryPanel.add(new JPanel(), BorderLayout.SOUTH);
+        inventoryPanel.add(inventoryButtonPanel, BorderLayout.EAST);
+
+        ArrayList<Item> inventory = null;
+
+        DefaultListModel<String> itemStrings = new DefaultListModel<>();
+
+//        for(Item item: inventory) {
+  //          historyStrings.addElement(item.toString());
+    //    }
+
+        historyList.setModel(itemStrings);
+
+        for(int i = 0; i < itemStrings.size(); i++) {
+            historyList.ensureIndexIsVisible(i);
+        }
+
+    }
+
+    private void setLogOffButton() {
+        logoffButton.addActionListener(e -> dispose());
+    }
+
+    private void setEditInfoButton() {
+        editInfoButton.addActionListener(e -> new SellerEditInfoWindow(seller));
+    }
+
+    private void setEditItemInfoButton() {
+        if(((DefaultListModel)(itemList.getModel())).getElementAt(0).equals("")) {}
+        else{
+            new ItemEditInfoWindow(itemArrayList.get(itemList.getSelectedIndex()));
+        }
+    }
+
+    private void setAddItemButton(int sellerID) {
+        new NewItemWindow(sellerID);
+    }
+
+    public static void main(String[] args) {
+        JFrame jf = new SellerFrontWindow(new Seller(1,"2","@","2","3", "5"));
+    }
 
 }

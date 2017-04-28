@@ -53,4 +53,22 @@ public class Item {
     public int getQuantity() {
         return quantity;
     }
+
+    public int hashCode() {
+        return 0;
+    }
+
+    public boolean equals(Object obj) {
+
+        if(!(obj instanceof Item)) {
+            return false;
+        }
+        else {
+            return this.productID == ((Item) obj).getProductID();
+        }
+    }
+
+    public String toString() {
+        return prodName + " " + description + " " + category + " " + price;
+    }
 }

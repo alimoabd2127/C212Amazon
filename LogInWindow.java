@@ -1,7 +1,15 @@
 package C212Amazon;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.Font;
 
 /**
  * Abstract class for a log in window.
@@ -9,8 +17,6 @@ import java.awt.*;
  * 4/25/2017
  */
 public abstract class LogInWindow extends JFrame {
-
-    private Market market = new Market();
 
     // All fields required for this panel.
     private final int FRAME_WIDTH = 600;
@@ -30,29 +36,33 @@ public abstract class LogInWindow extends JFrame {
     protected JButton loginButton = new JButton("Log in");
     protected JButton signupButton = new JButton("Sign up");
 
+    /**
+     * Constructor to initialize and set the log in window.
+     */
     public LogInWindow() {
 
         setTitle("Market 46");
 
-        setSize(20 * 30, 15 * 30);
         setLocationRelativeTo(null);
         setResizable(false);
-        add(mainPanel);
-        setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setPanelSizeAndLayout();
+        setFrameSizeAndLayout();
 
         setCenterPanel();
 
         setBottomPanel();
 
+        add(mainPanel);
+
+        setVisible(true);
+
     }
 
     /**
-     * Method to set up this panel.
+     * Method to set up this frame and its panel.
      */
-    private void setPanelSizeAndLayout() {
+    private void setFrameSizeAndLayout() {
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
         mainPanel.setLayout(new BorderLayout());
@@ -79,13 +89,6 @@ public abstract class LogInWindow extends JFrame {
 
         JPanel loginPanel = new JPanel();
         loginPanel.add(loginButton);
-        loginButton.addActionListener(e -> {
-            JOptionPane jop = new JOptionPane();
-            username = usernameTextField.getText();
-            password = passwordTextField.getText();
-            if(username.equals("") && password.equals(""))
-            jop.showMessageDialog(null, "Error: Username or password not found");
-        });
 
         centerPanel.add(new JPanel());
         centerPanel.add(usernamePanel);
@@ -95,8 +98,9 @@ public abstract class LogInWindow extends JFrame {
         mainPanel.add(centerPanel,BorderLayout.CENTER);
     }
 
+
     /**
-     * Method to set up the panel in the bottom of the frame.
+     * Method to set up the panel in the bottom of the frame. Empty panels are for formating.
      */
     private void setBottomPanel() {
         JPanel bottomPanel = new JPanel();

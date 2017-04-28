@@ -69,9 +69,9 @@ public abstract class SignUpWindow extends JFrame {
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new GridLayout(2,5));
         bottomPanel.add(new JPanel());
-        bottomPanel.add(signUpButton);
-        bottomPanel.add(new JPanel());
         bottomPanel.add(cancelButton);
+        bottomPanel.add(new JPanel());
+        bottomPanel.add(signUpButton);
         bottomPanel.add(new JPanel());
         bottomPanel.add(new JPanel());
         bottomPanel.add(new JPanel());

@@ -13,7 +13,6 @@ import java.util.Date;
 public class Buyer extends Account {
 
     // parameters
-    private Market market;                  // market
     private Cart cart;                      // Cart class
     private int totalCost = 0;              // Total cost of item selected.
     private int currentNumberOfItem = 0;    // Current number of items.
@@ -23,9 +22,10 @@ public class Buyer extends Account {
 
     // constructor
     public Buyer(int uniqueID, String username, String password, String firstName, String lastName, String phone, String email) {
+
         super(uniqueID, username, password, email);
         this.firstName = firstName;         // first name
-        this.cart = new Cart();
+        this.cart = new Cart(uniqueID);
         this.lastName = lastName;           // last name
         this.phone = phone;                 // phone
     }

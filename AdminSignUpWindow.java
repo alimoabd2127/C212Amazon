@@ -146,13 +146,11 @@ public class AdminSignUpWindow extends SignUpWindow {
                 jop.showMessageDialog(null, "Admin created successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
             }
-
         }
 
         else {
             jop.showMessageDialog(null, "Errors (" + errors + ")\n" + error, "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
     public static void main(String[] args) {

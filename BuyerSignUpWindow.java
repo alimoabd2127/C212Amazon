@@ -24,7 +24,7 @@ public class BuyerSignUpWindow extends SignUpWindow {
 
     public BuyerSignUpWindow() {
 
-        super("Buyer Sign Up");
+        super("Buyer");
 
         setPanelSizeAndLayout();
 
@@ -35,6 +35,8 @@ public class BuyerSignUpWindow extends SignUpWindow {
         setBottomPanel();
 
         signUpButton.addActionListener(e -> setSignUpButton());
+
+        setVisible(true);
     }
 
 

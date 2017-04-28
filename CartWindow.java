@@ -17,7 +17,7 @@ import java.util.Vector;
 public class CartWindow extends FrontWindow{
 
 
-    private HashMap<Item, Integer> currentCart;
+    private Cart currentCart;
     private JLabel cartHeader = new JLabel("Cart");
     private JList<String> cartList = new JList<>();
     private JButton cancelButton = new JButton("Cancel");
@@ -25,7 +25,7 @@ public class CartWindow extends FrontWindow{
     private JButton confirmButton = new JButton("Confirm");
 
     // constructor
-    public CartWindow(HashMap<Item, Integer> cart) {
+    public CartWindow(Cart cart) {
 
         super("Cart");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -33,7 +33,7 @@ public class CartWindow extends FrontWindow{
         currentCart = cart;
         cartHeader.setHorizontalAlignment(JLabel.CENTER);
         cartHeader.setFont(new Font(Font.SERIF, 0, 70));
-        cartList.setListData(getCartList());
+//        cartList.setListData(getCartList());
 
 
 
@@ -72,15 +72,15 @@ public class CartWindow extends FrontWindow{
 
     private Vector<String> getCartList() {
         Vector<String> cartList = new Vector<>();
-        if(currentCart == null || currentCart.size() == 0) {
+        if(currentCart == null || currentCart.getCart().size() == 0) {
             cartList.add("Cart is empty");
         }
         else {
-            Set<Item> keys = currentCart.keySet();
+            Set<Item> keys = currentCart.getCart().keySet();
 
             for (Item item : keys) {
 
-                cartList.add("(" + currentCart.get(item) + ") "
+                cartList.add("(" + currentCart.getCart().get(item) + ") "
                         + item.getProdName() + " ");
             }
         }
@@ -90,7 +90,7 @@ public class CartWindow extends FrontWindow{
     }
 
     public static void main(String[] args) {
-        JFrame s = new CartWindow(new HashMap<>());
+        JFrame s = new CartWindow(new Cart(2));
     }
 
 }

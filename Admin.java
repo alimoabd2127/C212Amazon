@@ -13,31 +13,5 @@ public class Admin extends Account {
         super(uniqueID, username, password, emailAddress);
     }
 
-    /**
-     * adds a quantity to the given index
-     * @param index
-     * @param quantity
-     */
-    public void addToQuantity(int index, int quantity) {}
-
-    /**
-     * removes a quantity from a given index
-     * @param index
-     * @param quantity
-     */
-    public void removeFromQuantity(int index, int quantity) {}
-
-    /**
-     * updates an item detail
-     * @param index
-     * @param detail
-     */
-    public void updateItemDetail(int index, String detail) {}
-
-    /**
-     * deletes an Item
-     * @param index
-     */
-    public void deleteItem(int index) {}
 }
 

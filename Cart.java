@@ -1,17 +1,18 @@
-/**
- * Cart
- * Cart represents a buyers cart
- */
-
 package C212Amazon;
 
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Date;
 
+/**
+ * Cart
+ * Cart represents a buyers cart
+ */
 public class Cart {
+
     private int buyerID;
     private HashMap<Item, Integer> cart;    // Shopping cart.
+
     private PurchaseHistoryDataWriter purchaseHistoryDataWriter = new PurchaseHistoryDataWriter();
     private PurchaseHistoryDataReader purchaseHistoryDataReader = new PurchaseHistoryDataReader();
 

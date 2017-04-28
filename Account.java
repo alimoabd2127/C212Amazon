@@ -1,12 +1,11 @@
+package C212Amazon;
+
 /**
  * Account
  * abstract class that represents accounts
  * Nicholas de la Espriella
  * 4/13/2017
  */
-
-package C212Amazon;
-
 public abstract class Account {
 
     // Parameters
@@ -24,9 +23,6 @@ public abstract class Account {
         this.emailAddress = emailAddress;
     }
 
-    // methods
-
-    // getters
     /**
      * returns a unique ID
      * @return uniqueID.
@@ -55,24 +51,5 @@ public abstract class Account {
     public String getEmailAddress() {
         return emailAddress;
     }
-
-    // setters
-    /**
-     * sets a user name
-     * @param userName The new username
-     */
-    public void setUserName(String userName) { this.userName = userName; }
-
-    /**
-     * sets a password
-     * @param password The new password.
-     */
-    public void setPassword(String password) { this.password = password; }
-
-    /**
-     * sets an email address
-     * @param email The new email information.
-     */
-    public void setEmailAddress(String email) { this.emailAddress = email; }
 
 }
