@@ -11,7 +11,7 @@ public class AdminDataWriter extends DataWriter {
      * Method to create a new admin account.
      * @param admin The Admin object whose account is created.
      */
-    public boolean createBuyer(Admin admin) {
+    public boolean createAdmin(Admin admin) {
         String sqlQuery = "INSERT INTO admin (admin.username, admin.password, admin.email)" +
                 "VALUES ('" + admin.getUserName() + "', '" + admin.getPassword() + "', "
                 + "'" + admin.getEmailAddress() + "');";
