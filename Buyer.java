@@ -25,7 +25,7 @@ public class Buyer extends Account {
     public Buyer(int uniqueID, String username, String password, String firstName, String lastName, String phone, String email) {
         super(uniqueID, username, password, email);
         this.firstName = firstName;         // first name
-        this.cart = new Cart();
+        this.cart = new Cart(1);
         this.lastName = lastName;           // last name
         this.phone = phone;                 // phone
     }
