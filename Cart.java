@@ -55,6 +55,14 @@ public class Cart {
     }
 
 
+    /**
+     * Method to get the buyer's cart
+     * @return This buyer's cart
+     */
+    public HashMap<Item, Integer> getCart() {
+        return cart;
+    }
+
 
 }
 
