@@ -14,8 +14,8 @@ public class Cart {
 
 
 // how to iterate over a hash-map
-for (Map.Item<Item, Int> item : map.entrySet()) {
-        Int qty = .getKey();
-        Item item = item.getItem();
+for (Map.Item<Item, Int> items : map.entrySet()) {
+        Int qty = items.getKey();
+        Item item = items.getItem();
 }
 
