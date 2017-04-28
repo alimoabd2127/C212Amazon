@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ *
  * Created by Turab on 4/25/2017.
  */
 public class MainWindow extends JFrame{

@@ -1,3 +1,10 @@
+/**
+ * CartWindow
+ * Cart's interface
+ * @author Syed Turab Ali Jafri
+ * 4/26/2017
+ */
+
 package C212Amazon;
 
 import javax.swing.*;
@@ -6,12 +13,9 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.Vector;
 
-/**
- * Cart's interface.
- * @author Syed Turab Ali Jafri
- * 4/26/2017
- */
+
 public class CartWindow extends FrontWindow{
+
 
     private HashMap<Item, Integer> currentCart;
     private JLabel cartHeader = new JLabel("Cart");
@@ -20,24 +24,25 @@ public class CartWindow extends FrontWindow{
     private JButton removeButton = new JButton("Remove");
     private JButton confirmButton = new JButton("Confirm");
 
+    // constructor
     public CartWindow(HashMap<Item, Integer> cart) {
 
         super("Cart");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         currentCart = cart;
-
-        mainPanel.setLayout(new BorderLayout());
-
         cartHeader.setHorizontalAlignment(JLabel.CENTER);
         cartHeader.setFont(new Font(Font.SERIF, 0, 70));
+        cartList.setListData(getCartList());
+
+
+
+        mainPanel.setLayout(new BorderLayout());
         mainPanel.add(cartHeader, BorderLayout.NORTH);
 
         JPanel cartPanel = new JPanel();
+
         cartPanel.setLayout(new BorderLayout());
-
-        cartList.setListData(getCartList());
-
         cartPanel.add(new JPanel(), BorderLayout.NORTH);
         cartPanel.add(new JScrollPane(cartList), BorderLayout.CENTER);
         cartPanel.add(new JPanel(), BorderLayout.SOUTH);
