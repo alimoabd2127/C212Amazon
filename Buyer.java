@@ -30,10 +30,6 @@ public class Buyer extends Account {
         this.phone = phone;                 // phone
     }
 
-
-
-
-
     /**
      * Method to get the first name.
      * @return The first name.
