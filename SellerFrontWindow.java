@@ -14,6 +14,7 @@ public class SellerFrontWindow extends FrontWindow {
     private Seller seller = null;
 
     private ItemDataReader itemdatareader = new ItemDataReader();
+    private PurchaseHistoryDataReader historydatareader = new PurchaseHistoryDataReader();
     private DataWriter itemdatawriter = new DataWriter();
 
     private JTabbedPane centerPanel = new JTabbedPane();
@@ -216,20 +217,18 @@ public class SellerFrontWindow extends FrontWindow {
 
     private void setUpHistoryPanel() {
 
-        ArrayList<Item> history = itemdatareader.getInventory("inventory", seller.getUniqueID());
-
-        ArrayList<String> historyToString = new ArrayList<>();
+        ArrayList<String> history = historydatareader.getSoldHistory("purchasehistory", seller.getUniqueID());
 
         DefaultListModel<String> historyStrings = new DefaultListModel<>();
 
-        if(history.size() == 0) {
+        if(history == null) {
             historyStrings.addElement("No History Found!");
         }
 
         else {
 
-            for (Item record : history) {
-                historyStrings.addElement(record.toString());
+            for (String record : history) {
+                historyStrings.addElement(record);
             }
 
             historyList.setModel(historyStrings);
