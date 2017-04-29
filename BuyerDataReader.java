@@ -50,7 +50,7 @@ public class BuyerDataReader extends DataReader {
             int id = 0;
             String uname = "", pass = "", first = "", last = "", phone = "", email = "";
 
-            if(!rs.next()){
+            while(rs.next()){
                 id = rs.getInt("id");
                 uname = rs.getString("username");
                 pass = rs.getString("password");
