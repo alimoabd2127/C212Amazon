@@ -59,7 +59,7 @@ public class PurchaseHistoryDataReader extends DataReader {
     }
 
     public ArrayList<String> getSoldHistory(String table, int sellerid){
-        String sqlQuery = "SELECT * FROM " + table + " WHERE " + table + ".buyerid LIKE '%" + sellerid + "%';";
+        String sqlQuery = "SELECT * FROM " + table + " WHERE " + table + ".sellerid LIKE '%" + sellerid + "%';";
         ArrayList<String> output = new ArrayList<>();
 
         ItemDataReader idr = new ItemDataReader();
