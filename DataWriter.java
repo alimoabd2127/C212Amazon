@@ -22,8 +22,8 @@ public class DataWriter {
     }
 
     public void setDb(String table, String column, int id, String input){
-        String sqlQuery = "UPDATE " + table + " SET " + table + "." + column + " = " + input +
-                " WHERE " + table + ".id = " + id;
+        String sqlQuery = "UPDATE " + table + " SET " + table + "." + column + " = '" + input +
+                "' WHERE " + table + ".id = " + id;
         try{
             Connection conn = databaseConnector();
             Statement query = conn.createStatement();
@@ -37,8 +37,8 @@ public class DataWriter {
     }
 
     public void setDb(String table, String column, int id, int input){
-        String sqlQuery = "UPDATE " + table + " SET " + table + "." + column + " = " + input +
-                " WHERE " + table + ".id = " + id;
+        String sqlQuery = "UPDATE " + table + " SET " + table + "." + column + " = '" + input +
+                "' WHERE " + table + ".id = " + id;
         try{
             Connection conn = databaseConnector();
             Statement query = conn.createStatement();
@@ -50,4 +50,5 @@ public class DataWriter {
             System.err.println(e.getMessage());
         }
     }
+
 }

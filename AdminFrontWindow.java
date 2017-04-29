@@ -2,6 +2,8 @@ package C212Amazon;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+
 /**
  * AdminFront
  * The front page for the admin
@@ -18,24 +20,31 @@ public class AdminFrontWindow extends FrontWindow{
 
     private JPanel buyersPanel = new JPanel();
     private JList<String> buyersList = new JList<>();
+    private ArrayList<Buyer> buyersArrayList = new ArrayList<>();
     private JButton editBuyerButton = new JButton("Edit Buyer");
     private JButton addBuyerButton = new JButton("Add Buyer");
-    private JButton printBuyerHistory = new JButton("Print History");
+    private JButton printBuyerHistoryButton = new JButton("Print History");
+    private JButton refreshBuyersPanelButton = new JButton("Refresh");
 
     private JPanel sellersPanel = new JPanel();
     private JList<String> sellersList = new JList<>();
+    private ArrayList<Seller> sellerArrayList = new ArrayList<>();
     private JButton editSellerButton = new JButton("Edit Seller");
     private JButton addSellerButton = new JButton("Add Seller");
-    private JButton printSellerHistory = new JButton("Print History");
+    private JButton printSellerHistoryButton = new JButton("Print History");
+    private JButton refreshSellerPanelButton = new JButton("Refresh");
 
     private JPanel inventoryPanel = new JPanel();
     private JList<String> itemList = new JList<>();
+    private ArrayList<Item> itemArrayList = new ArrayList<>();
     private JButton addItemButton = new JButton("Add Item");
     private JButton editItemButton = new JButton("Edit Item");
     private JButton deleteItemButton = new JButton("Delete Item");
+    private JButton refreshInventoryPanelButton = new JButton("Refresh");
 
     private JPanel historyPanel = new JPanel();
     private JList<String> historyList = new JList<>();
+    private JButton refreshHistoryPanelButton = new JButton("Refresh");
 
     public AdminFrontWindow(Admin admin) {
 
@@ -65,6 +74,42 @@ public class AdminFrontWindow extends FrontWindow{
         centerPanel.addTab("Inventory",null,inventoryPanel,"View inventory");
         centerPanel.addTab("History",null,historyPanel,"View history");
 
+        setUpBuyersPanel();
+
+        setUpSellersPanel();
+
+        setUpInventoryPanel();
+
+        setUpHistoryPanel();
+
+
+        mainPanel.add(centerPanel, BorderLayout.CENTER);
+
+        setUpEditInfoButton();
+        setLogOffButton();
+
+        setUpBuyerRefreshButton();
+        setUpAddBuyerButton();
+        setUpEditBuyerButton();
+        setUpPrintBuyerHistoryButton();
+
+        setUpSellerRefreshButton();
+        setUpAddSellerButton();
+        setUpEditSellerButton();
+        setUpPrintSellerHistoryButton();
+
+        setUpItemRefreshButton();
+        setUpAddItemButton();
+        setUpEditItemButton();
+        setUpDeleteItemButton();
+
+        setUpRefreshHistoryPanelButton();
+
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    private void setUpBuyersPanel() {
 
         buyersPanel.setLayout(new BorderLayout());
 
@@ -73,6 +118,8 @@ public class AdminFrontWindow extends FrontWindow{
 
         buyersPanelsButtonPanel.add(new JPanel());
         buyersPanelsButtonPanel.add(new JPanel());
+        buyersPanelsButtonPanel.add(new JPanel());
+        buyersPanelsButtonPanel.add(refreshBuyersPanelButton);
         buyersPanelsButtonPanel.add(new JPanel());
         buyersPanelsButtonPanel.add(new JPanel());
         buyersPanelsButtonPanel.add(new JPanel());
@@ -84,11 +131,8 @@ public class AdminFrontWindow extends FrontWindow{
         buyersPanelsButtonPanel.add(new JPanel());
         buyersPanelsButtonPanel.add(new JPanel());
         buyersPanelsButtonPanel.add(new JPanel());
-        buyersPanelsButtonPanel.add(printBuyerHistory);
-        buyersPanelsButtonPanel.add(new JPanel());
-        buyersPanelsButtonPanel.add(new JPanel());
-        buyersPanelsButtonPanel.add(new JPanel());
-        buyersPanelsButtonPanel.add(new JPanel());
+        buyersPanelsButtonPanel.add(printBuyerHistoryButton);
+
 
         buyersPanel.add(new JPanel(), BorderLayout.NORTH);
         buyersPanel.add(new JScrollPane(buyersList),BorderLayout.CENTER);
@@ -96,7 +140,11 @@ public class AdminFrontWindow extends FrontWindow{
         buyersPanel.add(new JPanel(), BorderLayout.SOUTH);
         buyersPanel.add(buyersPanelsButtonPanel, BorderLayout.EAST);
 
+    }
 
+    private void setUpBuyersJList() {}
+
+    private void setUpSellersPanel() {
         sellersPanel.setLayout(new BorderLayout());
 
         JPanel sellersPanelsButtonPanel = new JPanel();
@@ -104,6 +152,8 @@ public class AdminFrontWindow extends FrontWindow{
 
         sellersPanelsButtonPanel.add(new JPanel());
         sellersPanelsButtonPanel.add(new JPanel());
+        sellersPanelsButtonPanel.add(new JPanel());
+        sellersPanelsButtonPanel.add(refreshSellerPanelButton);
         sellersPanelsButtonPanel.add(new JPanel());
         sellersPanelsButtonPanel.add(new JPanel());
         sellersPanelsButtonPanel.add(new JPanel());
@@ -115,19 +165,50 @@ public class AdminFrontWindow extends FrontWindow{
         sellersPanelsButtonPanel.add(new JPanel());
         sellersPanelsButtonPanel.add(new JPanel());
         sellersPanelsButtonPanel.add(new JPanel());
-        sellersPanelsButtonPanel.add(printSellerHistory);
-        sellersPanelsButtonPanel.add(new JPanel());
-        sellersPanelsButtonPanel.add(new JPanel());
-        sellersPanelsButtonPanel.add(new JPanel());
-        sellersPanelsButtonPanel.add(new JPanel());
+        sellersPanelsButtonPanel.add(printSellerHistoryButton);
 
         sellersPanel.add(new JPanel(), BorderLayout.NORTH);
         sellersPanel.add(new JScrollPane(sellersList),BorderLayout.CENTER);
         sellersPanel.add(new JPanel(), BorderLayout.WEST);
         sellersPanel.add(new JPanel(), BorderLayout.SOUTH);
         sellersPanel.add(sellersPanelsButtonPanel, BorderLayout.EAST);
+    }
 
+    private void setUpSellersJList() {}
 
+    private void setUpHistoryPanel() {
+        historyPanel.setLayout(new BorderLayout());
+
+        JPanel historyButtonPanel = new JPanel();
+        historyButtonPanel.setLayout(new GridLayout(9,2));
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(refreshHistoryPanelButton);
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
+
+        historyPanel.add(new JScrollPane(historyList), BorderLayout.CENTER);
+        historyPanel.add(new JPanel(), BorderLayout.NORTH);
+        historyPanel.add(new JPanel(), BorderLayout.SOUTH);
+        historyPanel.add(new JPanel(), BorderLayout.WEST);
+        historyPanel.add(historyButtonPanel, BorderLayout.EAST);
+
+    }
+
+    private void setUpHistoryJList() {}
+
+    private void setUpInventoryPanel() {
         inventoryPanel.setLayout(new BorderLayout());
 
         JPanel inventoryButtonPanel = new JPanel();
@@ -135,6 +216,8 @@ public class AdminFrontWindow extends FrontWindow{
 
         inventoryButtonPanel.add(new JPanel());
         inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(refreshInventoryPanelButton);
         inventoryButtonPanel.add(new JPanel());
         inventoryButtonPanel.add(new JPanel());
         inventoryButtonPanel.add(new JPanel());
@@ -147,10 +230,7 @@ public class AdminFrontWindow extends FrontWindow{
         inventoryButtonPanel.add(new JPanel());
         inventoryButtonPanel.add(new JPanel());
         inventoryButtonPanel.add(deleteItemButton);
-        inventoryButtonPanel.add(new JPanel());
-        inventoryButtonPanel.add(new JPanel());
-        inventoryButtonPanel.add(new JPanel());
-        inventoryButtonPanel.add(new JPanel());
+
 
         inventoryPanel.add(new JPanel(), BorderLayout.NORTH);
         inventoryPanel.add(new JScrollPane(itemList),BorderLayout.CENTER);
@@ -158,48 +238,80 @@ public class AdminFrontWindow extends FrontWindow{
         inventoryPanel.add(new JPanel(), BorderLayout.EAST);
         inventoryPanel.add(new JPanel(), BorderLayout.SOUTH);
         inventoryPanel.add(inventoryButtonPanel, BorderLayout.EAST);
+    }
+
+    private void setUpInventoryJList() {}
 
 
-        historyPanel.setLayout(new BorderLayout());
 
-        historyPanel.setLayout(new BorderLayout());
-        historyPanel.add(new JScrollPane(historyList), BorderLayout.CENTER);
-        historyPanel.add(new JPanel(), BorderLayout.NORTH);
-        historyPanel.add(new JPanel(), BorderLayout.SOUTH);
-        historyPanel.add(new JPanel(), BorderLayout.WEST);
-        historyPanel.add(new JPanel(), BorderLayout.EAST);
 
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
 
+
+    private void setUpEditInfoButton() {
         editInfoButton.addActionListener(e -> new AdminEditInfoWindow(admin));
-
-        addBuyerButton.addActionListener(e -> new CreateBuyerWindow());
-        addSellerButton.addActionListener(e -> new CreateSellerWindow());
-        addItemButton.addActionListener(e -> new NewItemWindow(0));  /// GIVEN A DUMMY ID
-        //NOTE: MOCK OBJECTS FOR EDITING BUYER AND SELLER
-        Buyer mockBuyer = new Buyer(1,"mock", "mockMock",
-                "Mock","Mock","1111111111", "mock@mock.com");
-        Seller mockSeller = new Seller(1,"mock", "mockMock",
-                "Mock","1111111111", "mock@mock.com");
-        Item mockItem = new Item(0,"Mock", "Mocking", "mock", 29.99, 2, 3);
-
-        editBuyerButton.addActionListener(e -> new BuyerEditInfoWindow(mockBuyer));
-        editSellerButton.addActionListener(e -> new SellerEditInfoWindow(mockSeller));
-        editItemButton.addActionListener(e -> new ItemEditInfoWindow(mockItem));
-
-        setLogOffButton();
-
-        setLocationRelativeTo(null);
-        setVisible(true);
     }
 
     private void setLogOffButton() {
         logoffButton.addActionListener(e -> dispose());
     }
 
-    private void setEditInfoButton() {
-        editInfoButton.addActionListener(e -> new AdminEditInfoWindow(admin));
+    private void setUpBuyerRefreshButton() {
+      //  refreshBuyersPanelButton.addActionListener(e -> );
     }
+
+    private void setUpAddBuyerButton() {
+        addBuyerButton.addActionListener(e -> new CreateBuyerWindow());
+    }
+
+    private void setUpEditBuyerButton() {
+       // editBuyerButton.addActionListener(e -> new BuyerEditInfoWindow());
+    }
+
+    private void setUpPrintBuyerHistoryButton() {
+      //  printBuyerHistory
+    }
+
+    private void setUpSellerRefreshButton() {
+      //  refreshBuyersPanelButton.addActionListener(e -> );
+    }
+
+    private void setUpAddSellerButton() {
+        addSellerButton.addActionListener(e -> new CreateSellerWindow());
+    }
+
+    private void setUpEditSellerButton() {
+        //editSellerButton.addActionListener(e -> new SellerEditInfoWindow());
+    }
+
+    private void setUpPrintSellerHistoryButton() {
+        //printSellerHistory
+    }
+
+    private void setUpItemRefreshButton() {
+        //refreshBuyersPanelButton.addActionListener(e -> );
+    }
+
+    private void setUpAddItemButton() {
+        addItemButton.addActionListener(e -> new NewItemWindow(0));
+    }
+
+    private void setUpEditItemButton() {
+     //   editItemButton.addActionListener(e -> new ItemEditInfoWindow());
+    }
+
+    private void setUpDeleteItemButton() {
+        //deleteItemButton
+    }
+
+    private void setUpRefreshHistoryPanelButton() {
+       // refreshHistoryPanelButton
+    }
+
+
+
+
+
+
 
     public static void main(String[] args) {
         JFrame jf = new AdminFrontWindow(new Admin(1,"d","D","d"));

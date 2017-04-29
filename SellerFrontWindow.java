@@ -13,6 +13,9 @@ public class SellerFrontWindow extends FrontWindow {
 
     private Seller seller = null;
 
+    private ItemDataReader itemdatareader = new ItemDataReader();
+    private DataWriter itemdatawriter = new DataWriter();
+
     private JTabbedPane centerPanel = new JTabbedPane();
 
     private JButton logoffButton = new JButton("Log Off");
@@ -24,9 +27,10 @@ public class SellerFrontWindow extends FrontWindow {
     private JButton addItemButton = new JButton("Add Item");
     private JButton editItemButton = new JButton("Edit Item");
     private JButton deleteItemButton = new JButton("Delete Item");
+    private JButton refreshItemButton = new JButton("Refresh");
 
     private JPanel historyPanel = new JPanel();
-    private JList historyList = new JList();
+    private JList<String> historyList = new JList<>();
     private JButton refreshHistoryButton = new JButton("Refresh");
 
     public SellerFrontWindow(Seller seller) {
@@ -62,6 +66,11 @@ public class SellerFrontWindow extends FrontWindow {
 
         setLogOffButton();
         setEditInfoButton();
+        setAddItemButton(seller.getUniqueID());
+        setEditItemInfoButton();
+        setDeleteItemButton();
+        setRefreshHistoryButton();
+        setRefreshItemButton();
 
         setLocationRelativeTo(null);
         setVisible(true);
@@ -74,7 +83,7 @@ public class SellerFrontWindow extends FrontWindow {
         historyPanel.setLayout(new BorderLayout());
 
         JPanel historyButtonPanel = new JPanel();
-        historyButtonPanel.setLayout(new GridLayout(8,2));
+        historyButtonPanel.setLayout(new GridLayout(9,2));
         historyButtonPanel.add(new JPanel());
         historyButtonPanel.add(new JPanel());
         historyButtonPanel.add(new JPanel());
@@ -98,20 +107,7 @@ public class SellerFrontWindow extends FrontWindow {
         historyPanel.add(new JPanel(), BorderLayout.WEST);
         historyPanel.add(historyButtonPanel, BorderLayout.EAST);
 
-        ArrayList<String> history = null;
-
-        DefaultListModel<String> historyStrings = new DefaultListModel<>();
-
-//        for(String record: history) {
-  //          historyStrings.addElement(record);
-    //    }
-
-        historyList.setModel(historyStrings);
-
-        for(int i = 0; i < historyStrings.size(); i++) {
-            historyList.ensureIndexIsVisible(i);
-        }
-
+        setUpHistoryPanel();
 
     }
 
@@ -123,6 +119,8 @@ public class SellerFrontWindow extends FrontWindow {
         inventoryButtonPanel.setLayout(new GridLayout(8,2));
         inventoryButtonPanel.add(new JPanel());
         inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(new JPanel());
+        inventoryButtonPanel.add(refreshItemButton);
         inventoryButtonPanel.add(new JPanel());
         inventoryButtonPanel.add(new JPanel());
         inventoryButtonPanel.add(new JPanel());
@@ -143,20 +141,36 @@ public class SellerFrontWindow extends FrontWindow {
         inventoryPanel.add(new JPanel(), BorderLayout.SOUTH);
         inventoryPanel.add(inventoryButtonPanel, BorderLayout.EAST);
 
-        ArrayList<Item> inventory = null;
+        refreshInventoryJList();
+
+
+    }
+
+    private void refreshInventoryJList() {
+
+        itemArrayList = itemdatareader.getInventory("inventory", seller.getUniqueID());
 
         DefaultListModel<String> itemStrings = new DefaultListModel<>();
 
-//        for(Item item: inventory) {
-  //          historyStrings.addElement(item.toString());
-    //    }
+        if(itemArrayList.size() == 0) {}
+        else {
 
-        historyList.setModel(itemStrings);
+            for (Item item : itemArrayList) {
+                itemStrings.addElement(item.toString());
+            }
 
-        for(int i = 0; i < itemStrings.size(); i++) {
-            historyList.ensureIndexIsVisible(i);
+
+            itemList.setModel(itemStrings);
+
+            for (int i = 0; i < itemStrings.size(); i++) {
+                itemList.ensureIndexIsVisible(i);
+            }
+
         }
+    }
 
+    private void setRefreshItemButton() {
+        refreshItemButton.addActionListener(e -> refreshInventoryJList());
     }
 
     private void setLogOffButton() {
@@ -168,19 +182,43 @@ public class SellerFrontWindow extends FrontWindow {
     }
 
     private void setEditItemInfoButton() {
-        if(((DefaultListModel)(itemList.getModel())).getElementAt(0).equals("")) {}
-        else{
-            new ItemEditInfoWindow(itemArrayList.get(itemList.getSelectedIndex()));
-        }
+
+        editItemButton.addActionListener(e -> {
+
+            int selectedIndex = itemList.getSelectedIndex();
+            System.out.println(selectedIndex);
+
+            if(selectedIndex == -1) {}
+            else {
+            new ItemEditInfoWindow(itemArrayList.get(selectedIndex));
+            }
+        });
     }
 
     private void setAddItemButton(int sellerID) {
-        new NewItemWindow(sellerID);
+        addItemButton.addActionListener(e -> {
+            new NewItemWindow(sellerID);
+        });
+    }
+
+    private void setDeleteItemButton() {
+        deleteItemButton.addActionListener(e -> {
+            int selectedIndex = itemList.getSelectedIndex();
+
+            if(selectedIndex == -1) {}
+            else {
+                itemdatawriter.setDb("inventory","quantity",itemArrayList.get(selectedIndex).getProductID(), 0);
+                refreshInventoryJList();
+            }
+        }
+        );
     }
 
     private void setUpHistoryPanel() {
 
-        ArrayList<String> history = null; //historyReader.getsomething(seller id);
+        ArrayList<Item> history = itemdatareader.getInventory("inventory", seller.getUniqueID());
+
+        ArrayList<String> historyToString = new ArrayList<>();
 
         DefaultListModel<String> historyStrings = new DefaultListModel<>();
 
@@ -190,8 +228,8 @@ public class SellerFrontWindow extends FrontWindow {
 
         else {
 
-            for (String record : history) {
-                historyStrings.addElement(record);
+            for (Item record : history) {
+                historyStrings.addElement(record.toString());
             }
 
             historyList.setModel(historyStrings);
@@ -203,11 +241,13 @@ public class SellerFrontWindow extends FrontWindow {
     }
 
     private void setRefreshHistoryButton() {
-        refreshHistoryButton.addActionListener(e -> setUpHistoryJList());
+        refreshHistoryButton.addActionListener(e -> setUpHistoryPanel());
     }
 
+
     public static void main(String[] args) {
-        JFrame jf = new SellerFrontWindow(new Seller(1,"2","@","2","3", "5"));
+
+        JFrame jf = new SellerFrontWindow(new Seller(4,"username","password","name","1234567890", "email@address.com"));
     }
 
 }

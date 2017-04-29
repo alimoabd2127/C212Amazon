@@ -42,6 +42,7 @@ public class ItemEditInfoWindow extends JFrame{
 
         setSize(FRAME_WIDTH,FRAME_HEIGHT);
         actualProductNameLabel.setText(item.getProdName());
+        actualQuantityLabel.setText(""+item.getQuantity());
         actualCategoryLabel.setText(item.getCategory());
         actualPriceLabel.setText("" + item.getPrice());
 
@@ -78,7 +79,7 @@ public class ItemEditInfoWindow extends JFrame{
                 ,"Error",JOptionPane.ERROR_MESSAGE);
             }
             else {
-                itemdatawriter.setDb("item", "productname", item.getProductID(), nname);
+                itemdatawriter.setDb("inventory", "productname", item.getProductID(), nname);
                 jop.showMessageDialog(null, "Product name changed to " + nname + " successfully."
                 , "Success", JOptionPane.INFORMATION_MESSAGE);
                 actualProductNameLabel.setText(nname);
@@ -104,7 +105,7 @@ public class ItemEditInfoWindow extends JFrame{
                 ,"Error",JOptionPane.ERROR_MESSAGE);
             }
             else {
-                itemdatawriter.setDb("item", "category", item.getProductID(), cat);
+                itemdatawriter.setDb("inventory", "category", item.getProductID(), cat);
                 jop.showMessageDialog(null, "Category name changed to " + cat + " successfully."
                 , "Success", JOptionPane.INFORMATION_MESSAGE);
                 actualCategoryLabel.setText(cat);
@@ -120,16 +121,13 @@ public class ItemEditInfoWindow extends JFrame{
 
         quantityButton.addActionListener(e -> {
             JOptionPane jop = new JOptionPane();
-            String quant = jop.showInputDialog(null, "Enter new quantity:");
+            int quant = Integer.parseInt(jop.showInputDialog(null, "Enter new quantity:"));
 
-            if(quant.equals(actualCategoryLabel.getText())){
-
-            }
-            else {
-                itemdatawriter.setDb("item", "quantity", item.getProductID(), quant);
+            if(quant != Integer.parseInt(actualQuantityLabel.getText())){
+                itemdatawriter.setDb("inventory", "quantity", item.getProductID(), quant);
                 jop.showMessageDialog(null, "Quantity changed to " + quant + " successfully."
-                , "Success", JOptionPane.INFORMATION_MESSAGE);
-                actualCategoryLabel.setText(quant);
+                        , "Success", JOptionPane.INFORMATION_MESSAGE);
+                actualQuantityLabel.setText(quant + "");
             }
 
         });
@@ -148,7 +146,7 @@ public class ItemEditInfoWindow extends JFrame{
 
             }
             else {
-                itemdatawriter.setDb("item", "price", item.getProductID(), nprice + "");
+                itemdatawriter.setDb("inventory", "price", item.getProductID(), nprice + "");
                 jop.showMessageDialog(null, "Price changed to " + nprice +"" + " successfully."
                 , "Success", JOptionPane.INFORMATION_MESSAGE);
                 actualPriceLabel.setText(nprice + "");
@@ -160,7 +158,7 @@ public class ItemEditInfoWindow extends JFrame{
             JOptionPane jop = new JOptionPane();
             String desc = "" + jop.showInputDialog(null, "Enter new category:");
 
-                itemdatawriter.setDb("item", "decription", item.getProductID(), desc);
+                itemdatawriter.setDb("inventory", "description", item.getProductID(), desc);
                 jop.showMessageDialog(null, "Description changed to " + desc +"" + " successfully."
                 , "Success", JOptionPane.INFORMATION_MESSAGE);
 
@@ -189,7 +187,9 @@ public class ItemEditInfoWindow extends JFrame{
 
     }
 
-    //public static void main(String[] args) {
-      //  JFrame s = new ItemEditInfoWindow(new Item(2, "L","asd", "d", 1231, 2, 3));
-    //}
+    public static void main(String[] args) {
+
+        Item dum = (new ItemDataReader()).getItem("inventory", 2);
+        JFrame s = new ItemEditInfoWindow(dum);
+    }
 }
