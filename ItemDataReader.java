@@ -115,19 +115,19 @@ public class ItemDataReader extends DataReader {
             String productname = "", description = "", category = "";
             double price = 0;
 
-            if(!rs.next()){
-                System.out.println("No User");
-            }
-            id = rs.getInt("id");
-            productname = rs.getString("productname");
-            description = rs.getString("description");
-            category = rs.getString("category");
-            price = rs.getDouble("price");
-            quantity = rs.getInt("quantity");
-            sellerid = rs.getInt("sellerid");
+            while(rs.next()){
+                id = rs.getInt("id");
+                productname = rs.getString("productname");
+                description = rs.getString("description");
+                category = rs.getString("category");
+                price = rs.getDouble("price");
+                quantity = rs.getInt("quantity");
+                sellerid = rs.getInt("sellerid");
 
-            Item temp = new Item(id, productname, description, category, price, quantity, sellerid);
-            output.add(temp);
+                Item temp = new Item(id, productname, description, category, price, quantity, sellerid);
+                output.add(temp);
+            }
+
             conn.close();
             return output;
         } catch (Exception e) {

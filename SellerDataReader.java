@@ -46,23 +46,27 @@ public class SellerDataReader extends DataReader{
             int id = 0;
             String uname = "", pass = "", name = "", phone = "", email = "";
 
-            if(!rs.next()){
-                System.out.println("No User");
-            }
-            id = rs.getInt("id");
-            uname = rs.getString("username");
-            pass = rs.getString("password");
-            name = rs.getString("name");
-            phone = rs.getString("phone");
-            email = rs.getString("email");
+            while(rs.next()){
+                id = rs.getInt("id");
+                uname = rs.getString("username");
+                pass = rs.getString("password");
+                name = rs.getString("name");
+                phone = rs.getString("phone");
+                email = rs.getString("email");
 
-            Seller temp = new Seller(id, uname, pass, name, phone, email);
-            output.add(temp);
+                Seller temp = new Seller(id, uname, pass, name, phone, email);
+                output.add(temp);
+            }
             conn.close();
             return output;
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return null;
         }
+    }
+
+    public static void main(String[] args) {
+        SellerDataReader sdr = new SellerDataReader();
+        System.out.println(sdr.getSellers("seller").size());
     }
 }
