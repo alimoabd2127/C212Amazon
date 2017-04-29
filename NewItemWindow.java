@@ -15,6 +15,9 @@ public class NewItemWindow extends JFrame{
 
     private int sellerID;
 
+    private ItemDataWriter itemdatawriter = new ItemDataWriter();
+    private ItemDataReader itemdatareader = new ItemDataReader();
+
     protected JLabel headerLabel = new JLabel("Item");
 
     protected JLabel productNameLabel = new JLabel("Product Name: ");
@@ -52,6 +55,7 @@ public class NewItemWindow extends JFrame{
         //createButton.addActionListener(e -> setCreateButton());
 
         cancelButton.addActionListener(e -> dispose());
+        createButton.addActionListener(e -> setCreateButton());
         add(mainPanel);
         setSize(FRAME_WIDTH,FRAME_HEIGHT);
         setResizable(false);
@@ -160,75 +164,60 @@ public class NewItemWindow extends JFrame{
 
     }
 
-//    private void setCreateButton() {
-//
-//        JOptionPane jop = new JOptionPane();
-//        int errors = 0;
-//        String error = "";
-//        boolean usernameExists = true;
-//
-//        if (sellerdatareader.verifyNewUsername("seller", usernameTextField.getText())) {
-//
-//            usernameExists = false;
-//
-//            if (usernameTextField.getText().length() < 4) {
-//                errors++;
-//                error += "Invalid username (4)\n";
-//                usernameTextField.setText("");
-//            }
-//            if (passwordTextField.getText().length() < 8) {
-//                errors++;
-//                error += "Invalid password (8)\n";
-//                passwordTextField.setText("");
-//                confirmedPasswordTextField.setText("");
-//            }
-//            else if(!confirmedPasswordTextField.getText().equals(passwordTextField.getText())) {
-//                errors++;
-//                error += "Passwords don't match.\n";
-//                passwordTextField.setText("");
-//                confirmedPasswordTextField.setText("");
-//            }
-//            if (nameTextField.getText().length() < 3) {
-//                errors++;
-//                error += "Invalid name (3)\n";
-//                nameTextField.setText("");
-//            }
-//            if (phoneTextField.getText().length() < 10) {
-//                errors++;
-//                error += "Invalid phone number (10)\n";
-//                phoneTextField.setText("");
-//            }
-//            if (emailAddressTextField.getText().length() < 5) {
-//                errors++;
-//                error += "Invalid email address (5)\n";
-//                emailAddressTextField.setText("");
-//            }
-//
-//        }
-//
-//        if(usernameExists) {
-//            errors++;
-//            error += "Username already exists!\n";
-//            usernameTextField.setText("");
-//        }
-//
-//        if(errors == 0) {
-//            if(!sellerdatawriter.createSeller(new Seller(0,usernameTextField.getText(), passwordTextField.getText(),
-//                    nameTextField.getText(), phoneTextField.getText(),
-//                    emailAddressTextField.getText()))) {
-//                jop.showMessageDialog(null, "Error while creating user. Please try again.",
-//                        "Writing Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//            else {
-//                jop.showMessageDialog(null, "Seller created successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-//                dispose();
-//            }
-//
-//        }
-//
-//        else {
-//            jop.showMessageDialog(null, "Errors (" + errors + ")\n" + error, "Error", JOptionPane.ERROR_MESSAGE);
-//        }
-//
-//    }
+    private void setCreateButton() {
+
+        JOptionPane jop = new JOptionPane();
+        int errors = 0;
+        String error = "";
+
+            if (productNameTextField.getText().length() < 4) {
+                errors++;
+                error += "Invalid product name (4)\n";
+                productNameTextField.setText("");
+            }
+            if (categoryTextField.getText().length() < 4) {
+                errors++;
+                error += "Invalid category name (4)\n";
+                categoryTextField.setText("");
+            }
+            if (descriptionTextField.getText().length() < 8) {
+                errors++;
+                error += "Invalid description (8)\n";
+                descriptionTextField.setText("");
+            }
+            if (quantityTextField.getText().length() < 1) {
+                errors++;
+                error += "Invalid quantity (1)\n";
+                quantityTextField.setText("");
+            }
+            if (priceTextField.getText().length() < 1) {
+                errors++;
+                error += "Invalid price (1)\n";
+                priceTextField.setText("");
+            }
+
+        if(errors == 0) {
+            if(!itemdatawriter.createItem(new Item(0,productNameTextField.getText(), descriptionTextField.getText(),
+                    categoryTextField.getText(), Double.parseDouble(priceTextField.getText()),
+                    Integer.parseInt(quantityTextField.getText()),sellerID))) {
+                jop.showMessageDialog(null, "Error while creating item. Please try again.",
+                        "Writing Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                jop.showMessageDialog(null, "Item created successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+            }
+
+        }
+
+        else {
+            jop.showMessageDialog(null, "Errors (" + errors + ")\n" + error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
+    public static void main(String[] args) {
+        JFrame jf = new NewItemWindow(100);
+
+    }
 }
