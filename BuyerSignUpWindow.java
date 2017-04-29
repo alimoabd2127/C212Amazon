@@ -191,7 +191,4 @@ public class BuyerSignUpWindow extends SignUpWindow {
         }
     }
 
-//    public static void main(String[] args) {
-//        JFrame jf = new BuyerSignUpWindow();
-//    }
 }

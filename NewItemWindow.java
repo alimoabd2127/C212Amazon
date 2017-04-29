@@ -216,8 +216,4 @@ public class NewItemWindow extends JFrame{
 
     }
 
-    public static void main(String[] args) {
-        JFrame jf = new NewItemWindow(100);
-
-    }
 }

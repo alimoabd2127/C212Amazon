@@ -187,9 +187,4 @@ public class ItemEditInfoWindow extends JFrame{
 
     }
 
-    public static void main(String[] args) {
-
-        Item dum = (new ItemDataReader()).getItem("inventory", 2);
-        JFrame s = new ItemEditInfoWindow(dum);
-    }
 }

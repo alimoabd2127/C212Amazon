@@ -215,13 +215,5 @@ public class BuyerFrontWindow extends FrontWindow {
         });
     }
 
-    public static void main(String[] args) {
-        Buyer mock = new Buyer(100, "mockmock", "mockmockmock", "Mock", "Mock",
-                "9999999999", "mock@mock.mock");
-
-        //mock.
-
-        JFrame jf = new BuyerFrontWindow(mock);
-    }
 
 }

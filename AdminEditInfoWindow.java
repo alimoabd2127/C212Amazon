@@ -128,8 +128,5 @@ public class AdminEditInfoWindow extends EditInfoWindow {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        JFrame jf = new AdminEditInfoWindow(new Admin(2, "3" , "3", "4"));
-    }
 }
 

@@ -64,9 +64,4 @@ public class SellerDataReader extends DataReader{
             return null;
         }
     }
-
-    public static void main(String[] args) {
-        SellerDataReader sdr = new SellerDataReader();
-        System.out.println(sdr.getSellers("seller").size());
-    }
 }

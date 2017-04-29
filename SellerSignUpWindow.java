@@ -178,8 +178,4 @@ public class SellerSignUpWindow extends SignUpWindow {
         }
 
     }
-
-    public static void main(String[] args) {
-        JFrame jf = new SellerSignUpWindow();
-    }
 }
