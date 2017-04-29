@@ -15,11 +15,12 @@ public class PurchaseHistoryDataWriter extends DataWriter{
      */
     public boolean createPurchaseHistory(int cartId, int buyerId, int productId, int quantity){
         Random rand = new Random();
+        DataReader dr = new DataReader();
 
-        String sqlQuery = "INSERT INTO purchasehistory (purchasehistory.cartid, purchasehistory.buyerid, purchasehistory.productid, purchasehistory.quantity, purchasehistory.checkoutdate, purchasehistory.estimatedshipping)" +
+        String sqlQuery = "INSERT INTO purchasehistory (purchasehistory.cartid, purchasehistory.buyerid, purchasehistory.productid, purchasehistory.quantity, purchasehistory.checkoutdate, purchasehistory.estimatedshipping, purchasehistory.sellerid)" +
                 "VALUES ('" + cartId + "', '" + buyerId + "', "
                 + "'" + productId + "', '" + quantity + "', CURDATE(), '"
-                + (rand.nextInt(4) + 2) + "');";
+                + (rand.nextInt(4) + 2) + "', " + dr.getSellerId("inventory", productId) + ");";
 
         try{
             Connection conn = databaseConnector();
@@ -28,9 +29,16 @@ public class PurchaseHistoryDataWriter extends DataWriter{
             conn.close();
         }
         catch (Exception e){
+            System.out.println(sqlQuery);
             System.err.println(e.getMessage());
         }
 
         return true;
+    }
+
+    public static void main(String[] args) {
+        PurchaseHistoryDataWriter phdw = new PurchaseHistoryDataWriter();
+        PurchaseHistoryDataReader phdr = new PurchaseHistoryDataReader();
+        phdw.createPurchaseHistory(phdr.getCartId(), 5, 1, 3);
     }
 }

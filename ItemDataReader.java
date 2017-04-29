@@ -100,9 +100,9 @@ public class ItemDataReader extends DataReader {
             return null;
         }
     }
-//
+
 //    public static void main(String[] args) {
 //        ItemDataReader idr = new ItemDataReader();
-//        System.out.println(idr.searchItems("inventory", "").toString());
+//        System.out.println(idr.getItem("inventory", 4).toString());
 //    }
 }

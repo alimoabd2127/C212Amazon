@@ -101,4 +101,21 @@ public class DataReader {
             return false;
         }
     }
+
+    public int getSellerId(String table, int item){
+        String sqlQuery = "SELECT inventory.sellerid FROM " + table + " WHERE " + table + ".id = '" + item + "';";
+        ResultSet rs = null;
+        int output = 0;
+        try {
+            Connection conn = databaseConnector();
+            Statement query = conn.createStatement();
+            rs = query.executeQuery(sqlQuery);
+            rs.next();
+            output = rs.getInt("sellerid");
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return output;
+    }
 }
