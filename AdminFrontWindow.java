@@ -13,6 +13,13 @@ public class AdminFrontWindow extends FrontWindow{
 
     private Admin admin = null;
 
+    private BuyerDataReader buyerdatareader = new BuyerDataReader();
+    private SellerDataReader sellerdatareader = new SellerDataReader();
+    private PurchaseHistoryDataReader historydatareader = new PurchaseHistoryDataReader();
+    private ItemDataReader itemdatareader = new ItemDataReader();
+
+    private ItemDataWriter itemdatawriter = new ItemDataWriter();
+
     private JTabbedPane centerPanel = new JTabbedPane();
 
     private JButton logoffButton = new JButton("Log Off");
@@ -28,7 +35,7 @@ public class AdminFrontWindow extends FrontWindow{
 
     private JPanel sellersPanel = new JPanel();
     private JList<String> sellersList = new JList<>();
-    private ArrayList<Seller> sellerArrayList = new ArrayList<>();
+    private ArrayList<Seller> sellersArrayList = new ArrayList<>();
     private JButton editSellerButton = new JButton("Edit Seller");
     private JButton addSellerButton = new JButton("Add Seller");
     private JButton printSellerHistoryButton = new JButton("Print History");
@@ -142,7 +149,28 @@ public class AdminFrontWindow extends FrontWindow{
 
     }
 
-    private void setUpBuyersJList() {}
+    private void setUpBuyersJList() {
+
+        buyersArrayList = buyerdatareader.getBuyers("buyer");
+
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+
+        if(buyersArrayList == null) {
+        }
+
+        else {
+
+            for (Buyer buyer : buyersArrayList) {
+                listModel.addElement(buyer.toString());
+            }
+
+            buyersList.setModel(listModel);
+
+            for (int i = 0; i < listModel.size(); i++) {
+                buyersList.ensureIndexIsVisible(i);
+            }
+        }
+    }
 
     private void setUpSellersPanel() {
         sellersPanel.setLayout(new BorderLayout());
@@ -174,7 +202,28 @@ public class AdminFrontWindow extends FrontWindow{
         sellersPanel.add(sellersPanelsButtonPanel, BorderLayout.EAST);
     }
 
-    private void setUpSellersJList() {}
+    private void setUpSellersJList() {
+
+        sellersArrayList = sellerdatareader.getSellers("seller");
+
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+
+        if(sellersArrayList == null) {
+        }
+
+        else {
+
+            for (Seller seller : sellersArrayList) {
+                listModel.addElement(seller.toString());
+            }
+
+            sellersList.setModel(listModel);
+
+            for (int i = 0; i < listModel.size(); i++) {
+                sellersList.ensureIndexIsVisible(i);
+            }
+        }
+    }
 
     private void setUpHistoryPanel() {
         historyPanel.setLayout(new BorderLayout());
@@ -206,7 +255,29 @@ public class AdminFrontWindow extends FrontWindow{
 
     }
 
-    private void setUpHistoryJList() {}
+    private void setUpHistoryJList() {
+
+        ArrayList<String> historyArrayList = historydatareader.getPurchases("purchasehistory");
+
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+
+        if(historyArrayList == null) {
+        }
+
+        else {
+
+            for (String string : historyArrayList) {
+                listModel.addElement(string.toString());
+            }
+
+            historyList.setModel(listModel);
+
+            for (int i = 0; i < listModel.size(); i++) {
+                historyList.ensureIndexIsVisible(i);
+            }
+        }
+
+    }
 
     private void setUpInventoryPanel() {
         inventoryPanel.setLayout(new BorderLayout());
@@ -240,7 +311,28 @@ public class AdminFrontWindow extends FrontWindow{
         inventoryPanel.add(inventoryButtonPanel, BorderLayout.EAST);
     }
 
-    private void setUpInventoryJList() {}
+    private void setUpInventoryJList() {
+
+        itemArrayList = null; //buyerdatareader.getBuyer()
+
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+
+        if(itemArrayList == null) {
+        }
+
+        else {
+
+            for (Item item : itemArrayList) {
+                listModel.addElement(item.toString());
+            }
+
+            itemList.setModel(listModel);
+
+            for (int i = 0; i < listModel.size(); i++) {
+                itemList.ensureIndexIsVisible(i);
+            }
+        }
+    }
 
 
 
@@ -252,11 +344,14 @@ public class AdminFrontWindow extends FrontWindow{
     }
 
     private void setLogOffButton() {
-        logoffButton.addActionListener(e -> dispose());
+        logoffButton.addActionListener(e -> {
+            dispose();
+            new MainWindow();
+        });
     }
 
     private void setUpBuyerRefreshButton() {
-      //  refreshBuyersPanelButton.addActionListener(e -> );
+      refreshBuyersPanelButton.addActionListener(e -> setUpBuyersJList());
     }
 
     private void setUpAddBuyerButton() {
@@ -264,15 +359,36 @@ public class AdminFrontWindow extends FrontWindow{
     }
 
     private void setUpEditBuyerButton() {
-       // editBuyerButton.addActionListener(e -> new BuyerEditInfoWindow());
+
+       editBuyerButton.addActionListener(e -> {
+           int selectedIndex = buyersList.getSelectedIndex();
+           if(selectedIndex != -1) {
+               new BuyerEditInfoWindow(buyersArrayList.get(selectedIndex));
+           }
+       });
     }
 
     private void setUpPrintBuyerHistoryButton() {
-      //  printBuyerHistory
+        printBuyerHistoryButton.addActionListener(e -> {
+
+            int selectedIndex = buyersList.getSelectedIndex();
+
+            if(selectedIndex!=-1) {
+                ArrayList<String> history = historydatareader.getPurchaseHistory("purchasehistory",
+                        buyersArrayList.get(selectedIndex).getUniqueID());
+
+                for(String item: history) {
+                    System.out.println(item);
+                }
+
+                new JOptionPane().showMessageDialog(null, "Buyer's history printed successfully!",
+                        "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
     }
 
     private void setUpSellerRefreshButton() {
-      //  refreshBuyersPanelButton.addActionListener(e -> );
+      refreshBuyersPanelButton.addActionListener(e -> setUpSellersJList());
     }
 
     private void setUpAddSellerButton() {
@@ -280,38 +396,84 @@ public class AdminFrontWindow extends FrontWindow{
     }
 
     private void setUpEditSellerButton() {
-        //editSellerButton.addActionListener(e -> new SellerEditInfoWindow());
+        editSellerButton.addActionListener(e -> {
+            int selectedIndex = sellersList.getSelectedIndex();
+
+            if(selectedIndex!=-1) {
+                new SellerEditInfoWindow(sellersArrayList.get(selectedIndex));
+            }
+
+        });
     }
 
     private void setUpPrintSellerHistoryButton() {
-        //printSellerHistory
+
+        printSellerHistoryButton.addActionListener(e -> {
+
+            int selectedIndex = sellersList.getSelectedIndex();
+
+            if (selectedIndex != -1) {
+                ArrayList<String> history = historydatareader.getPurchaseHistory("purchasehistory",
+                        sellersArrayList.get(selectedIndex).getUniqueID());
+
+                for (String item : history) {
+                    System.out.println(item);
+                }
+
+                new JOptionPane().showMessageDialog(null, "Seller's history printed successfully!",
+                        "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
     }
 
     private void setUpItemRefreshButton() {
-        //refreshBuyersPanelButton.addActionListener(e -> );
+        refreshBuyersPanelButton.addActionListener(e -> setUpInventoryJList());
     }
 
     private void setUpAddItemButton() {
-        addItemButton.addActionListener(e -> new NewItemWindow(0));
+        addItemButton.addActionListener(e -> {
+            DataReader dr = new DataReader();
+
+            JOptionPane jop = new JOptionPane();
+
+            int sellerIdD = Integer.parseInt(jop.showInputDialog(null, "Enter seller's id:"));
+
+            if(dr.verifyId("seller", sellerIdD)){
+                new NewItemWindow(sellerIdD);
+            }
+
+            else {
+                jop.showMessageDialog(null ,"Seller doesn't exist!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
     }
 
     private void setUpEditItemButton() {
-     //   editItemButton.addActionListener(e -> new ItemEditInfoWindow());
+        editItemButton.addActionListener(e -> {
+            int selectedIndex = itemList.getSelectedIndex();
+
+            if(selectedIndex!=-1) {
+                new ItemEditInfoWindow(itemArrayList.get(selectedIndex));
+            }
+
+        });
     }
 
     private void setUpDeleteItemButton() {
-        //deleteItemButton
+        deleteItemButton.addActionListener(e -> {
+            int selectedIndex = itemList.getSelectedIndex();
+
+            if(selectedIndex == -1) {}
+            else {
+                itemdatawriter.setDb("inventory","quantity",itemArrayList.get(selectedIndex).getProductID(), 0);
+                setUpInventoryJList();
+            }
+        });
     }
 
     private void setUpRefreshHistoryPanelButton() {
-       // refreshHistoryPanelButton
+       refreshHistoryPanelButton.addActionListener(e -> setUpHistoryJList());
     }
-
-
-
-
-
-
 
     public static void main(String[] args) {
         JFrame jf = new AdminFrontWindow(new Admin(1,"d","D","d"));

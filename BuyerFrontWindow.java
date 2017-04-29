@@ -23,7 +23,7 @@ public class BuyerFrontWindow extends FrontWindow {
     private ItemDataWriter itemdatawriter = new ItemDataWriter();
     private ItemDataReader itemdatareader = new ItemDataReader();
 
-    private JTextField searchBar = new JTextField(40);
+    private JTextField searchBar = new JTextField(35);
     private JButton searchButton = new JButton("Search");
     private JPanel searchBarPanel = new JPanel();
     private BufferedImage groupLogo;
