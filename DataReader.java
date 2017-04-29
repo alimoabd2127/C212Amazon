@@ -1,7 +1,7 @@
 package C212Amazon;
 
 import java.sql.*;
-import java.util.ArrayList;
+
 
 /**
  * Abstract class for file writers.
@@ -119,68 +119,5 @@ public class DataReader {
             System.err.println(e.getMessage());
         }
         return output;
-    }
-
-    public ArrayList<Buyer> getBuyers(String table){
-        String sqlQuery = "SELECT * FROM " + table + ";";
-        ArrayList<Buyer> output = new ArrayList<>();
-        try {
-            Connection conn = databaseConnector();
-            Statement query = conn.createStatement();
-            ResultSet rs = query.executeQuery(sqlQuery);
-
-            int id = 0;
-            String uname = "", pass = "", first = "", last = "", phone = "", email = "";
-
-            if(!rs.next()){
-                System.out.println("No User");
-            }
-            id = rs.getInt("id");
-            uname = rs.getString("username");
-            pass = rs.getString("password");
-            first = rs.getString("firstname");
-            last = rs.getString("lastname");
-            phone = rs.getString("phone");
-            email = rs.getString("email");
-
-            Buyer temp = new Buyer(id, uname, pass, first, last, phone, email);
-            output.add(temp);
-            conn.close();
-            return output;
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-            return null;
-        }
-    }
-
-    public ArrayList<Seller> getSellers(String table){
-        String sqlQuery = "SELECT * FROM " + table + ";";
-        ArrayList<Seller> output = new ArrayList<>();
-        try {
-            Connection conn = databaseConnector();
-            Statement query = conn.createStatement();
-            ResultSet rs = query.executeQuery(sqlQuery);
-
-            int id = 0;
-            String uname = "", pass = "", name = "", phone = "", email = "";
-
-            if(!rs.next()){
-                System.out.println("No User");
-            }
-            id = rs.getInt("id");
-            uname = rs.getString("username");
-            pass = rs.getString("password");
-            name = rs.getString("name");
-            phone = rs.getString("phone");
-            email = rs.getString("email");
-
-            Seller temp = new Seller(id, uname, pass, name, phone, email);
-            output.add(temp);
-            conn.close();
-            return output;
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-            return null;
-        }
     }
 }
