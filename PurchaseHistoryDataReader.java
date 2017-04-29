@@ -88,4 +88,40 @@ public class PurchaseHistoryDataReader extends DataReader {
             return null;
         }
     }
+
+    public ArrayList<String> getPurchases(String table){
+        String sqlQuery = "SELECT * FROM " + table + ";";
+        ArrayList<String> output = new ArrayList<>();
+        try {
+            Connection conn = databaseConnector();
+            Statement query = conn.createStatement();
+            ResultSet rs = query.executeQuery(sqlQuery);
+
+            int id = 0, cartid = 0, buyerid = 0, productid = 0, quantity = 0, estimatedshipping = 0, sellerid = 0;
+            String date = "";
+
+            if(!rs.next()){
+                System.out.println("No User");
+            }
+            id = rs.getInt("id");
+            cartid = rs.getInt("cartid");
+            buyerid = rs.getInt("buyerid");
+            productid = rs.getInt("productid");
+            quantity = rs.getInt("quantity");
+            date = rs.getString("checkoutdate");
+            estimatedshipping = rs.getInt("estimatedshipping");
+            sellerid = rs.getInt("sellerid");
+
+
+            String temp = "    ID: " + id + "    CartID: " + cartid + "    BuyerID: " + buyerid + "    ProductID: " +
+                    productid + "    SellerID: " + sellerid + "    Quantity: " + quantity + "    Checkout Date: " +
+                    date + "    Arrival Date: " + estimatedshipping;
+            output.add(temp);
+            conn.close();
+            return output;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+    }
 }

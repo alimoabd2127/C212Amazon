@@ -103,6 +103,39 @@ public class ItemDataReader extends DataReader {
         }
     }
 
+    public ArrayList<Item> getItems(String table){
+        String sqlQuery = "SELECT * FROM " + table + ";";
+        ArrayList<Item> output = new ArrayList<>();
+        try {
+            Connection conn = databaseConnector();
+            Statement query = conn.createStatement();
+            ResultSet rs = query.executeQuery(sqlQuery);
+
+            int id = 0, quantity = 0, sellerid = 0;
+            String productname = "", description = "", category = "";
+            double price = 0;
+
+            if(!rs.next()){
+                System.out.println("No User");
+            }
+            id = rs.getInt("id");
+            productname = rs.getString("productname");
+            description = rs.getString("description");
+            category = rs.getString("category");
+            price = rs.getDouble("price");
+            quantity = rs.getInt("quantity");
+            sellerid = rs.getInt("sellerid");
+
+            Item temp = new Item(id, productname, description, category, price, quantity, sellerid);
+            output.add(temp);
+            conn.close();
+            return output;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+    }
+
 //    public static void main(String[] args) {
 //        ItemDataReader idr = new ItemDataReader();
 //        System.out.println(idr.getItem("inventory", 4).toString());
