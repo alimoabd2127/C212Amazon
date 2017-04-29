@@ -18,7 +18,7 @@ public class BuyerHistoryWindow extends FrontWindow{
 
         super("History");
 
-        ArrayList<String> history = null; //historyReader.getsomething(buyer id);
+        ArrayList<String> history = historyReader.getPurchaseHistory("purchasehistory", buyerID);
 
         DefaultListModel<String> historyStrings = new DefaultListModel<>();
 

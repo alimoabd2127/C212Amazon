@@ -73,6 +73,6 @@ public class Item {
     }
 
     public String toString2() {
-        return prodName + "     $" + price;
+        return prodName + "     $" + price + "    Seller: " + sellerID;
     }
 }
