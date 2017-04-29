@@ -74,6 +74,9 @@ public class SellerFrontWindow extends FrontWindow {
         historyPanel.setLayout(new BorderLayout());
 
         JPanel historyButtonPanel = new JPanel();
+        historyButtonPanel.setLayout(new GridLayout(8,2));
+        historyButtonPanel.add(new JPanel());
+        historyButtonPanel.add(new JPanel());
         historyButtonPanel.add(new JPanel());
         historyButtonPanel.add(new JPanel());
         historyButtonPanel.add(new JPanel());
@@ -197,6 +200,10 @@ public class SellerFrontWindow extends FrontWindow {
                 historyList.ensureIndexIsVisible(i);
             }
         }
+    }
+
+    private void setRefreshHistoryButton() {
+        refreshHistoryButton.addActionListener(e -> setUpHistoryJList());
     }
 
     public static void main(String[] args) {
