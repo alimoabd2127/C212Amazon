@@ -122,7 +122,6 @@ public class CartWindow extends FrontWindow{
                         actualSelectedItem = item;
                     }
                 }
-                System.out.println(actualSelectedItem);
                 itemSet.remove(actualSelectedItem);
                 currentCart.getCart().remove(actualSelectedItem);
                 initializeCartList();

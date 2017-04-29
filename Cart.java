@@ -62,7 +62,6 @@ public class Cart {
                 String testCurrentQuantity = "" + (dataReader.getDb("inventory", "quantity", productID));
 
                 int currentQuantity = testCurrentQuantity.equals("")? 0 : Integer.parseInt(testCurrentQuantity);
-                System.out.println(currentQuantity);
                 int newQuantity = (currentQuantity - qty) < 0 ? 0 : currentQuantity - qty;
                 dataWriter.setDb("inventory", "quantity", productID, newQuantity);
             }
