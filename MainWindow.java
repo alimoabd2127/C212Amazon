@@ -1,10 +1,8 @@
 package C212Amazon;
 
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * GUI for the main window of mini-amazon project.
  * @author Syed Turab Ali Jafri.
@@ -49,6 +47,23 @@ public class MainWindow extends JFrame{
     private void setMainPanel() {
 
         mainPanel.setLayout(new BorderLayout());
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new GridLayout(2,1));
+
+        JLabel marketLabel = new JLabel("M A R K E T");
+        marketLabel.setFont(new Font(Font.MONOSPACED, 0, 70));
+        marketLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JLabel fortySixLabel = new JLabel("4 6");
+        fortySixLabel.setFont(new Font(Font.SERIF , 0, 60));
+        fortySixLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        centerPanel.add(marketLabel);
+        centerPanel.add(fortySixLabel);
+
+        mainPanel.add(centerPanel, BorderLayout.CENTER);
+
         setSouthPanel();
     }
 
