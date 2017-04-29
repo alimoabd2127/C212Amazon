@@ -58,5 +58,34 @@ public class PurchaseHistoryDataReader extends DataReader {
         }
     }
 
+    public ArrayList<String> getSoldHistory(String table, int sellerid){
+        String sqlQuery = "SELECT * FROM " + table + " WHERE " + table + ".buyerid LIKE '%" + sellerid + "%';";
+        ArrayList<String> output = new ArrayList<>();
 
+        ItemDataReader idr = new ItemDataReader();
+        try {
+            Connection conn = databaseConnector();
+            Statement query = conn.createStatement();
+            ResultSet rs = query.executeQuery(sqlQuery);
+
+            int cartid = 0, quantity = 0;
+            String item = "", estDay, purchaseDate;
+
+            while(rs.next()){
+                cartid = rs.getInt("cartid");
+                item = idr.getItem("inventory", rs.getInt("productid")).toString2();
+                quantity = rs.getInt("quantity");
+                estDay = rs.getString("estimatedshipping");
+                purchaseDate = rs.getString("checkoutdate");
+
+                String temp = cartid + "    Product: " + item + "    Quantity: " + quantity + "    Purchased: " + purchaseDate + "    Shipping time: " + estDay + " days";
+                output.add(temp);
+            }
+            conn.close();
+            return output;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+    }
 }
