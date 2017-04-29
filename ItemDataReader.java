@@ -126,6 +126,7 @@ public class ItemDataReader extends DataReader {
 
                 Item temp = new Item(id, productname, description, category, price, quantity, sellerid);
                 output.add(temp);
+                System.out.println(temp);
             }
 
             conn.close();
