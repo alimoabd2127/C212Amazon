@@ -322,7 +322,7 @@ public class AdminFrontWindow extends FrontWindow{
 
     private void setUpInventoryJList() {
 
-        itemArrayList = null; //buyerdatareader.getBuyer()
+        itemArrayList = itemdatareader.getItems("inventory");
 
         DefaultListModel<String> listModel = new DefaultListModel<>();
 
@@ -478,10 +478,6 @@ public class AdminFrontWindow extends FrontWindow{
 
     private void setUpRefreshHistoryPanelButton() {
        refreshHistoryPanelButton.addActionListener(e -> setUpHistoryJList());
-    }
-
-    public static void main(String[] args) {
-        JFrame jf = new AdminFrontWindow(new Admin(1,"d","D","d"));
     }
 
 }

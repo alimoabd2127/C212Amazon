@@ -181,9 +181,5 @@ public class CartWindow extends FrontWindow{
 
     }
 
-    public static void main(String[] args) {
-        JFrame s = new CartWindow(new Cart(2));
-    }
-
 }
 

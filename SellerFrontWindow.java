@@ -246,10 +246,4 @@ public class SellerFrontWindow extends FrontWindow {
         refreshHistoryButton.addActionListener(e -> setUpHistoryPanel());
     }
 
-
-    public static void main(String[] args) {
-
-        JFrame jf = new SellerFrontWindow(new Seller(4,"username","password","name","1234567890", "email@address.com"));
-    }
-
 }

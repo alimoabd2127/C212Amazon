@@ -36,9 +36,4 @@ public class PurchaseHistoryDataWriter extends DataWriter{
         return true;
     }
 
-    public static void main(String[] args) {
-        PurchaseHistoryDataWriter phdw = new PurchaseHistoryDataWriter();
-        PurchaseHistoryDataReader phdr = new PurchaseHistoryDataReader();
-        phdw.createPurchaseHistory(phdr.getCartId(), 5, 1, 3);
-    }
 }
