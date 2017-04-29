@@ -63,7 +63,9 @@ public class ItemDataReader extends DataReader {
                 sellerid = rs.getInt("sellerid");
 
                 Item item = new Item(id, prodname, description, category, price, quantity, sellerid);
-                output.add(item);
+                if(quantity > 0){
+                    output.add(item);
+                }
             }
             conn.close();
             return output;
