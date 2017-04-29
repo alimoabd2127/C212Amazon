@@ -40,6 +40,39 @@ public class ItemDataReader extends DataReader {
         }
     }
 
+    public ArrayList<Item> getInventory(String table, int name){
+        String sqlQuery = "SELECT * FROM " + table + " WHERE " + table + ".sellerid = " + name + ";";
+
+        ArrayList<Item> output = new ArrayList<>();
+        try {
+            Connection conn = databaseConnector();
+            Statement query = conn.createStatement();
+            ResultSet rs = query.executeQuery(sqlQuery);
+
+            int id = 0, quantity = 0, sellerid = 0;
+            String prodname = "", description = "", category = "";
+            double price = 0.0f;
+
+            while(rs.next()){
+                id = rs.getInt("id");
+                prodname = rs.getString("productname");
+                description = rs.getString("description");
+                category = rs.getString("category");
+                price = rs.getDouble("price");
+                quantity = rs.getInt("quantity");
+                sellerid = rs.getInt("sellerid");
+
+                Item item = new Item(id, prodname, description, category, price, quantity, sellerid);
+                output.add(item);
+            }
+            conn.close();
+            return output;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+    }
+
     public Item getItem(String table, int id){
         String sqlQuery = "SELECT * FROM " + table + " WHERE " + table + ".id = '" + id + "';";
         ResultSet rs = null;
