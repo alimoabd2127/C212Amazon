@@ -175,7 +175,10 @@ public class SellerFrontWindow extends FrontWindow {
     }
 
     private void setLogOffButton() {
-        logoffButton.addActionListener(e -> dispose());
+        logoffButton.addActionListener(e -> {
+            dispose();
+            new MainWindow();
+        });
     }
 
     private void setEditInfoButton() {

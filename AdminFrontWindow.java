@@ -147,6 +147,8 @@ public class AdminFrontWindow extends FrontWindow{
         buyersPanel.add(new JPanel(), BorderLayout.SOUTH);
         buyersPanel.add(buyersPanelsButtonPanel, BorderLayout.EAST);
 
+        setUpBuyersJList();
+
     }
 
     private void setUpBuyersJList() {
@@ -200,6 +202,8 @@ public class AdminFrontWindow extends FrontWindow{
         sellersPanel.add(new JPanel(), BorderLayout.WEST);
         sellersPanel.add(new JPanel(), BorderLayout.SOUTH);
         sellersPanel.add(sellersPanelsButtonPanel, BorderLayout.EAST);
+
+        setUpSellersJList();
     }
 
     private void setUpSellersJList() {
@@ -252,6 +256,8 @@ public class AdminFrontWindow extends FrontWindow{
         historyPanel.add(new JPanel(), BorderLayout.SOUTH);
         historyPanel.add(new JPanel(), BorderLayout.WEST);
         historyPanel.add(historyButtonPanel, BorderLayout.EAST);
+
+        setUpHistoryJList();
 
     }
 
@@ -309,6 +315,9 @@ public class AdminFrontWindow extends FrontWindow{
         inventoryPanel.add(new JPanel(), BorderLayout.EAST);
         inventoryPanel.add(new JPanel(), BorderLayout.SOUTH);
         inventoryPanel.add(inventoryButtonPanel, BorderLayout.EAST);
+
+        setUpInventoryJList();
+
     }
 
     private void setUpInventoryJList() {
@@ -333,10 +342,6 @@ public class AdminFrontWindow extends FrontWindow{
             }
         }
     }
-
-
-
-
 
 
     private void setUpEditInfoButton() {
