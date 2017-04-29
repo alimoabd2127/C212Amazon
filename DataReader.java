@@ -1,5 +1,6 @@
 package C212Amazon;
 
+import javax.xml.crypto.Data;
 import java.sql.*;
 
 
@@ -119,5 +120,29 @@ public class DataReader {
             System.err.println(e.getMessage());
         }
         return output;
+    }
+
+    public boolean verifyId(String table, int id) {
+        String sqlQuery = "SELECT COUNT(*) FROM " + table + " WHERE " + table + ".id = '" + id + "';";
+        System.out.println(sqlQuery);
+        try {
+            Connection conn = databaseConnector();
+            Statement query = conn.createStatement();
+            ResultSet rs = query.executeQuery(sqlQuery);
+            rs.next();
+
+
+            if(rs.getInt(1) != 0){
+                conn.close();
+                return true;
+            }
+            else{
+                conn.close();
+                return false;
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
     }
 }
