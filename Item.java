@@ -75,4 +75,8 @@ public class Item {
     public String toString2() {
         return prodName + "     $" + price + "    Seller: " + sellerID;
     }
+
+    public String toString3(){
+        return productID + "    " + prodName + "    " + price + "    " + sellerID + "    " + description + "    " + category + "    " + quantity + "    ";
+    }
 }
